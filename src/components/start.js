@@ -31,6 +31,7 @@ const TitleImg = styled.img`
 `;
 
 const Button = styled.button`
+    cursor:pointer; // 커서 올리면 손바닥
     position : absolute;
     margin-top : 450px;
     position : absolute;
@@ -38,6 +39,9 @@ const Button = styled.button`
     border:none;
 `
 const ButtonImg = styled.img`
+    &:hover{ // 커서 올리면 이미지 커지게
+        transform: scale(1.3);
+    }
     width: 120px;
     height: 40px;
 `;
