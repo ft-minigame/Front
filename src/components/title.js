@@ -1,19 +1,29 @@
 import styled from "styled-components";
-import Background from "./background/background";
-import Title from '../assets/images/Title.gif';
-import GameStart from '../assets/images/gamestart_button.png'
+import Background from "./background";
+import TitleImg from '../assets/images/Title/Title.png';
+import GameStart from '../assets/images/Title/gamestart_button.png'
+import { useNavigate } from 'react-router-dom';
 
-const Start = () => {
+const Title = () => {
+    
+    const navigate = useNavigate(); 
+    
+    const handleClick = () => {
+        navigate('/index');
+    };
+
     return (
         <Wrapper>
             <Background />
-            <TitleImg src={Title} />
-            <Button> <ButtonImg src={GameStart} /> </Button>
+            <TitleImgTag src={TitleImg} />
+            <Button onClick={handleClick}>
+                <ButtonImg src={GameStart} /> 
+            </Button>
         </Wrapper>
     );
 }
 
-export default Start;
+export default Title;
 
 const Wrapper = styled.div`
     height: 100vh;
@@ -21,19 +31,21 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-width: 1200px;
+    min-height: 675px;
 `;
 
-const TitleImg = styled.img`
+const TitleImgTag = styled.img`
     position : absolute;
-    width: 100vw;
-    height: 100vh;
+    width: 1200px;
+    height: 675px;
     object-fit: cover;
 `;
 
 const Button = styled.button`
     cursor:pointer; // 커서 올리면 손바닥
     position : absolute;
-    margin-top : 450px;
+    margin-top : 380px;
     position : absolute;
     background-color:transparent;
     border:none;

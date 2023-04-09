@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import Frame from '../../assets/images/Frame.png';
+import Frame from '../assets/images/Frame.png';
 
 const Background = () => {
     return (
@@ -17,12 +17,14 @@ const Wrapper = styled.div`
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-width: 1200px;
+    min-height: 675px;
 `;
     
 const BackImage = styled.div`
     position : relative;
-    width: 100vw;
-    height: 100vh;
+    width: 1200px;
+    height: 675px;
     background: url(${Frame});
     background-repeat: no-repeat;
     background-size: cover;
