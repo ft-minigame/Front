@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import reset from 'styled-reset';
+import { createGlobalStyle } from 'styled-components'
+import reset from 'styled-reset'
 
 const GlobalStyle = createGlobalStyle`
     ${reset};
@@ -14,6 +14,6 @@ const GlobalStyle = createGlobalStyle`
         // padding: 0;
         // font-family: Open-Sans, Helvetica, Sans-Serif;
     }
-`;
+`
 
-export default GlobalStyle;
+export default GlobalStyle
