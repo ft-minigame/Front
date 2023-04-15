@@ -1,10 +1,10 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
-import GlobalStyle from './styles/globalStyle'
-import theme from './styles/theme'
-import Title from './components/title'
-import Index from './components/Index/Index'
-import Game from './components/game'
-import GameSelect from './components/gameselect/gameselect'
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import GlobalStyle from './styles/globalStyle';
+import theme from './styles/theme';
+import Title from './components/title';
+import Index from './components/Index/Index';
+import Game from './components/game';
+import GameSelect from './components/gameselect/gameselect';
 
 function App() {
   return (
@@ -17,7 +17,7 @@ function App() {
         <Route path="/gameselect" element={<GameSelect />} />
       </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;
