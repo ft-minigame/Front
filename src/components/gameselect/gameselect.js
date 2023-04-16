@@ -4,15 +4,36 @@ import SelectTitle from '../../assets/images/Index/game_select.png';
 import { GameSelectButton } from './GameSelectButton';
 import { MoaMoa, MoaMoaThumbnail, Ready, ReadyThumbnail } from '../../assets/images/GameSelect';
 
+const Games = [
+  {
+    id: 0,
+    src: MoaMoa,
+    defaultThumbnail: MoaMoaThumbnail,
+    url: '',
+  },
+  {
+    id: 1,
+    src: Ready,
+    defaultThumbnail: ReadyThumbnail,
+    url: '',
+  },
+  {
+    id: 2,
+    src: Ready,
+    defaultThumbnail: ReadyThumbnail,
+    url: '',
+  },
+];
+
 export const GameSelect = () => {
   return (
     <Wrapper>
       <Background />
       <BackImage />
       <ButtonWrapper>
-        <GameSelectButton defaultThumbnail={MoaMoaThumbnail} src={MoaMoa} />
-        <GameSelectButton defaultThumbnail={ReadyThumbnail} src={Ready} />
-        <GameSelectButton defaultThumbnail={ReadyThumbnail} src={Ready} />
+        {Games.map(({ id, defaultThumbnail, src, url }) => (
+          <GameSelectButton key={id} defaultThumbnail={defaultThumbnail} src={src} url={url} />
+        ))}
       </ButtonWrapper>
     </Wrapper>
   );
