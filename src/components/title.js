@@ -1,15 +1,15 @@
-import styled from 'styled-components'
-import Background from './background'
-import TitleImg from '../assets/images/Title/Title.png'
-import GameStart from '../assets/images/Title/gamestart_button.png'
-import { useNavigate } from 'react-router-dom'
+import styled from 'styled-components';
+import Background from './background';
+import TitleImg from '../assets/images/Title/Title.png';
+import GameStart from '../assets/images/Title/gamestart_button.png';
+import { useNavigate } from 'react-router-dom';
 
 const Title = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/index')
-  }
+    navigate('/index');
+  };
 
   return (
     <Wrapper>
@@ -19,10 +19,10 @@ const Title = () => {
         <ButtonImg src={GameStart} />
       </Button>
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Title
+export default Title;
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -32,14 +32,14 @@ const Wrapper = styled.div`
   justify-content: center;
   min-width: 1200px;
   min-height: 675px;
-`
+`;
 
 const TitleImgTag = styled.img`
   position: absolute;
   width: 1200px;
   height: 675px;
   object-fit: cover;
-`
+`;
 
 const Button = styled.button`
   cursor: pointer; // 커서 올리면 손바닥
@@ -48,7 +48,7 @@ const Button = styled.button`
   position: absolute;
   background-color: transparent;
   border: none;
-`
+`;
 const ButtonImg = styled.img`
   &:hover {
     // 커서 올리면 이미지 커지게
@@ -56,4 +56,4 @@ const ButtonImg = styled.img`
   }
   width: 120px;
   height: 40px;
-`
+`;

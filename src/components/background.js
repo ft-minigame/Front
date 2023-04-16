@@ -1,15 +1,15 @@
-import styled from 'styled-components'
-import Frame from '../assets/images/Frame.png'
+import styled from 'styled-components';
+import Frame from '../assets/images/Frame.png';
 
 const Background = () => {
   return (
     <Wrapper>
       <BackImage />
     </Wrapper>
-  )
-}
+  );
+};
 
-export default Background
+export default Background;
 
 const Wrapper = styled.div`
   height: 100vh;
@@ -19,7 +19,7 @@ const Wrapper = styled.div`
   justify-content: center;
   min-width: 1200px;
   min-height: 675px;
-`
+`;
 
 const BackImage = styled.div`
   position: relative;
@@ -28,4 +28,4 @@ const BackImage = styled.div`
   background: url(${Frame});
   background-repeat: no-repeat;
   background-size: cover;
-`
+`;
