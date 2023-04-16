@@ -1,25 +1,22 @@
 import styled from 'styled-components';
 import Background from '../background';
-import GameButton1 from './gameButton1';
-import GameButton2 from './gameButton2';
-import GameButton3 from './gameButton3';
 import SelectTitle from '../../assets/images/Index/game_select.png';
+import { GameSelectButton } from './GameSelectButton';
+import { MoaMoa, MoaMoaThumbnail, Ready, ReadyThumbnail } from '../../assets/images/GameSelect';
 
-const GameSelect = () => {
+export const GameSelect = () => {
   return (
     <Wrapper>
       <Background />
       <BackImage />
       <ButtonWrapper>
-        <GameButton1 />
-        <GameButton2 />
-        <GameButton3 />
+        <GameSelectButton defaultThumbnail={MoaMoaThumbnail} src={MoaMoa} />
+        <GameSelectButton defaultThumbnail={ReadyThumbnail} src={Ready} />
+        <GameSelectButton defaultThumbnail={ReadyThumbnail} src={Ready} />
       </ButtonWrapper>
     </Wrapper>
   );
 };
-
-export default GameSelect;
 
 const Wrapper = styled.div`
   height: 100vh;
