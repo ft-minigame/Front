@@ -38,6 +38,6 @@ const color = {
 };
 
 // 각각의 객체들을 theme이라는 하나의 객체로 묶어서 export합니다.
-const theme = { fontSize, length, color};
+const theme = { fontSize, length, color };
 
 export default theme;

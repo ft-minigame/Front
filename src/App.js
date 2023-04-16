@@ -11,10 +11,10 @@ function App() {
     <Router theme={theme}>
       <GlobalStyle />
       <Routes>
-          <Route path="/" element={<Title />} />
-          <Route path="/index" element={<Index />} />
-          <Route path="/game" element={<Game />} />
-          <Route path="/gameselect" element={<GameSelect />} />
+        <Route path="/" element={<Title />} />
+        <Route path="/index" element={<Index />} />
+        <Route path="/game" element={<Game />} />
+        <Route path="/gameselect" element={<GameSelect />} />
       </Routes>
     </Router>
   );
