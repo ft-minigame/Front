@@ -1,21 +1,70 @@
 import styled from 'styled-components';
 import Background from '../background';
-import Button1 from './selectButton1';
-import Button2 from './selectButton2';
-import Button3 from './selectButton3';
-import Button4 from './selectButton4';
-import Button5 from './selectButton5';
+import { MenuButton } from './MenuButton';
+import {
+  Cat,
+  CatThumbnail,
+  GameSelect,
+  GameSelectThumbnail,
+  Inquiry,
+  InquiryThumbnail,
+  Rank,
+  RankThumbnail,
+  Setting,
+  SettingThumbnail,
+} from '../../assets/images/Index';
+import { useNavigate } from 'react-router-dom';
+
+const Menus = [
+  {
+    id: 0,
+    src: GameSelect,
+    defaultThumbnail: GameSelectThumbnail,
+    url: '/gameselect',
+  },
+  {
+    id: 1,
+    src: Inquiry,
+    defaultThumbnail: InquiryThumbnail,
+    url: '/gameselect',
+  },
+  {
+    id: 2,
+    src: Setting,
+    defaultThumbnail: SettingThumbnail,
+    url: '/gameselect',
+  },
+  {
+    id: 3,
+    src: Rank,
+    defaultThumbnail: RankThumbnail,
+    url: '/gameselect',
+  },
+  {
+    id: 4,
+    src: Cat,
+    defaultThumbnail: CatThumbnail,
+    url: '',
+  },
+];
 
 const Index = () => {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Background />
       <ButtonWrapper>
-        <Button1 />
-        <Button2 />
-        <Button3 />
-        <Button4 />
-        <Button5 />
+        {Menus.map(({ id, defaultThumbnail, src, url }) => (
+          <MenuButton
+            key={id}
+            defaultThumbnail={defaultThumbnail}
+            src={src}
+            onClick={() => {
+              navigate(url);
+            }}
+          />
+        ))}
       </ButtonWrapper>
     </Wrapper>
   );

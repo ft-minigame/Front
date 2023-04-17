@@ -1,0 +1,10 @@
+export { default as Cat } from './cat.png';
+export { default as CatThumbnail } from './cat_.png';
+export { default as GameSelect } from './game_select.png';
+export { default as GameSelectThumbnail } from './game_select_.png';
+export { default as Inquiry } from './inquiry.png';
+export { default as InquiryThumbnail } from './inquiry_.png';
+export { default as Rank } from './rank.png';
+export { default as RankThumbnail } from './rank_.png';
+export { default as Setting } from './setting.png';
+export { default as SettingThumbnail } from './setting_.png';

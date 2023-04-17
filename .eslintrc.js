@@ -14,7 +14,10 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  rules: {},
+  rules: {
+    'react/prop-types': 'off',
+    'no-unused-vars': 'warn',
+  },
   settings: {
     react: {
       version: 'detect',
