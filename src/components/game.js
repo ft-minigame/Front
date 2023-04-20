@@ -6,75 +6,83 @@ import front from '../assets/images/character/front.png';
 import left from '../assets/images/character/left.png';
 import right from '../assets/images/character/right.png';
 
-const Game = () => {
-  const containerWidth = 1100;
-  const containerHeight = 650;
-  const start = {
-    x: window.innerWidth / 2 + 100,
-    y: window.innerHeight / 2 + 50,
-  };
+const GAME_WIDTH = 680;
+const GAME_HEIGHT = 440;
+const CHARACTER_SIZE = 40;
 
-  const [position, setPosition] = useState(start);
-  const [prevPosition, setPrevPosition] = useState(start);
+const Game = () => {
+  const [snake, setSnake] = useState([{ x: 5, y: 5 }]);
+  const [direction, setDirection] = useState('back');
+  const [gameOver, setGameOver] = useState(false);
   const [image, setImage] = useState(back);
 
   useEffect(() => {
-    function handleKeyDown(event) {
-      const { key } = event;
-      switch (key) {
-        case 'ArrowUp':
-          setPrevPosition(position);
-          setPosition((pos) => ({
-            ...pos,
-            y: Math.max(pos.y - 10, -pos.y + containerHeight / 2, 0),
-          }));
-          setImage(back);
-          break;
-        case 'ArrowDown':
-          setPrevPosition(position);
-          setPosition((pos) => ({
-            ...pos,
-            y: Math.min(
-              pos.y + 10,
-              containerHeight / 2 - 100 + pos.y,
-              containerHeight - 100,
-            ),
-          }));
-          setImage(front);
-          break;
-        case 'ArrowLeft':
-          setPrevPosition(position);
-          setPosition((pos) => ({
-            ...pos,
-            x: Math.max(pos.x - 10, -pos.x + containerWidth / 2, 0),
-          }));
-          setImage(left);
-          break;
-        case 'ArrowRight':
-          setPrevPosition(position);
-          setPosition((pos) => ({
-            ...pos,
-            x: Math.min(
-              pos.x + 10,
-              containerWidth / 2 - 100 + pos.x,
-              containerWidth - 100,
-            ),
-          }));
-          setImage(right);
-          break;
-        default:
-          break;
-      }
+    const intervalId = setInterval(() => {
+      moveSnake();
+    }, 100);
+
+    return () => clearInterval(intervalId);
+  }, [snake]);
+
+  const moveSnake = () => {
+    const head = { ...snake[0] };
+    switch (direction) {
+      case 'up':
+        head.y -= 1;
+        break;
+      case 'down':
+        head.y += 1;
+        break;
+      case 'left':
+        head.x -= 1;
+        break;
+      case 'right':
+        head.x += 1;
+        break;
+      default:
+        break;
     }
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [position]);
+    if (head.x < 0 || head.x * CHARACTER_SIZE >= GAME_WIDTH || head.y < 0 || head.y * CHARACTER_SIZE >= GAME_HEIGHT) {
+      setGameOver(true);
+      return;
+    }
+
+    setSnake([head, ...snake.slice(0, -1)]);
+  };
+
+  const handleKeyPress = (event) => {
+    switch (event.key) {
+      case 'ArrowUp':
+        setDirection('up');
+        setImage(back);
+        break;
+      case 'ArrowDown':
+        setDirection('down');
+        setImage(front);
+        break;
+      case 'ArrowLeft':
+        setDirection('left');
+        setImage(left);
+        break;
+      case 'ArrowRight':
+        setDirection('right');
+        setImage(right);
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <Wrapper>
+    <Wrapper onKeyDown={handleKeyPress} tabIndex="0">
       <Background />
-      <CatImg src={image} position={position} prevPosition={prevPosition} />
+      <Canvas>
+        {snake.map((block, index) => (
+          <SnakeBlock src={image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
+        ))}
+      </Canvas>
+      {gameOver && <GameOver>Game Over!</GameOver>}
     </Wrapper>
   );
 };
@@ -87,16 +95,24 @@ const Wrapper = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 1200px;
-  min-height: 675px;
-  position: relative;
 `;
 
-const CatImg = styled.img`
+const Canvas = styled.div`
+  width: ${GAME_WIDTH}px;
+  height: ${GAME_HEIGHT}px;
   position: absolute;
-  left: ${(props) => props.prevPosition.x}px;
-  top: ${(props) => props.prevPosition.y}px;
-  transition: left 0.1s, top 0.1s;
-  width: 100px;
-  height: 100px;
+  border: 1px solid black;
+`;
+
+const SnakeBlock = styled.img`
+  position: absolute;
+  width: ${CHARACTER_SIZE}px;
+  height: ${CHARACTER_SIZE}px;
+`;
+
+const GameOver = styled.div`
+  position: absolute;
+  font-size: 2rem;
+  color: red;
+  text-align: center;
 `;
