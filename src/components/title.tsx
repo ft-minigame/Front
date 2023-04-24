@@ -3,6 +3,7 @@ import Background from './background';
 import TitleImg from '../assets/images/Title/Title.png';
 import GameStart from '../assets/images/Title/gamestart_button.png';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const Title = () => {
   const navigate = useNavigate();

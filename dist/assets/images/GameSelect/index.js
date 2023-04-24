@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var game1_png_1 = require("./game1.png");
+exports.MoaMoaThumbnail = game1_png_1.default;
+var game1__png_1 = require("./game1_.png");
+exports.MoaMoa = game1__png_1.default;
+var game2_png_1 = require("./game2.png");
+exports.ReadyThumbnail = game2_png_1.default;
+var game2__png_1 = require("./game2_.png");
+exports.Ready = game2__png_1.default;

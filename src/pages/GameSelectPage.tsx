@@ -1,3 +1,4 @@
+import React from 'react';
 import { GameSelect as _GameSelect } from '../components/gameselect/GameSelect';
 
 export const GameSelect = () => {
