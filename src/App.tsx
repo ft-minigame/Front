@@ -10,9 +10,9 @@ function App() {
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Index />} />
-        {/* <Route path="/index" element={<Home />} />
+        <Route path="/index" element={<Home />} />
         <Route path="/game" element={<Game />} />
-        <Route path="/gameselect" element={<GameSelect />} /> */}
+        <Route path="/gameselect" element={<GameSelect />} />
       </Routes>
     </Router>
   );
