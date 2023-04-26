@@ -6,6 +6,7 @@ import front from '../assets/images/character/front.png';
 import left from '../assets/images/character/left.png';
 import right from '../assets/images/character/right.png';
 import GFrame from '../assets/images/SnakeGame/Grid_Frame.png'
+import itemImage from '../assets/images/SnakeGame/item.png';
 import React from 'react';
 
 const GAME_WIDTH = 680;
@@ -17,6 +18,7 @@ const Game = () => {
   const [direction, setDirection] = useState('back');
   const [gameOver, setGameOver] = useState(false);
   const [image, setImage] = useState(back);
+  const [item, setItem] = useState({ x: 0, y: 0, visible: false });
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -25,6 +27,15 @@ const Game = () => {
 
     return () => clearInterval(intervalId);
   }, [snake]);
+
+  const showItem = () => {
+    const newItem = {
+      x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
+      y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
+      visible: true
+    };
+    setItem(newItem);
+  };
 
   const moveSnake = () => {
     const head = { ...snake[0] };
@@ -43,14 +54,29 @@ const Game = () => {
         break;
       default:
         break;
-    }
-
+    }  
+  
     if (head.x < 0 || head.x * CHARACTER_SIZE >= GAME_WIDTH || head.y < 0 || head.y * CHARACTER_SIZE >= GAME_HEIGHT) {
       setGameOver(true);
       return;
     }
-
-    setSnake([head, ...snake.slice(0, -1)]);
+  
+    const newSnake = [head, ...snake.slice(0, -1)];
+    setSnake(newSnake);
+  
+    if (item.visible && item.x === head.x && item.y === head.y) {
+      const newItem = {
+        x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
+        y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
+        visible: true
+      };
+      setItem(newItem);
+      setSnake([...newSnake, snake[snake.length - 1]]);
+    }
+  
+    if (!item.visible) {
+      showItem();
+    }
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -81,10 +107,11 @@ const Game = () => {
       <Background />
       <GameFrame />
       <Canvas>
-        {snake.map((block, index) => (
-          <SnakeBlock src={image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
-        ))}
-      </Canvas>
+      {snake.map((block, index) => (
+        <SnakeBlock src={image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
+      ))}
+      {item.visible && <SnakeBlock src={itemImage} style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }} />}
+    </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
     </Wrapper>
   );
