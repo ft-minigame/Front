@@ -14,6 +14,7 @@ import {
   SettingThumbnail,
 } from '../../assets/images/Index';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const Menus = [
   {
@@ -62,8 +63,7 @@ const Index = () => {
             src={src}
             onClick={() => {
               navigate(url);
-            }}
-          />
+            } } restProps={undefined}          />
         ))}
       </ButtonWrapper>
     </Wrapper>

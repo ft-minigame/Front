@@ -5,6 +5,7 @@ import back from '../assets/images/character/back.png';
 import front from '../assets/images/character/front.png';
 import left from '../assets/images/character/left.png';
 import right from '../assets/images/character/right.png';
+import React from 'react';
 
 const GAME_WIDTH = 680;
 const GAME_HEIGHT = 440;
@@ -51,7 +52,7 @@ const Game = () => {
     setSnake([head, ...snake.slice(0, -1)]);
   };
 
-  const handleKeyPress = (event) => {
+  const handleKeyPress = (event: { key: any; }) => {
     switch (event.key) {
       case 'ArrowUp':
         setDirection('up');
@@ -75,7 +76,7 @@ const Game = () => {
   };
 
   return (
-    <Wrapper onKeyDown={handleKeyPress} tabIndex="0">
+    <Wrapper onKeyDown={handleKeyPress}>
       <Background />
       <Canvas>
         {snake.map((block, index) => (

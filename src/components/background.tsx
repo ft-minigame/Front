@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import Frame from '../assets/images/Frame.png';
+import React from 'react';
 
 const Background = () => {
   return (
