@@ -5,6 +5,7 @@ import back from '../assets/images/character/back.png';
 import front from '../assets/images/character/front.png';
 import left from '../assets/images/character/left.png';
 import right from '../assets/images/character/right.png';
+import GFrame from '../assets/images/SnakeGame/Grid_Frame.png'
 import React from 'react';
 
 const GAME_WIDTH = 680;
@@ -12,7 +13,7 @@ const GAME_HEIGHT = 440;
 const CHARACTER_SIZE = 40;
 
 const Game = () => {
-  const [snake, setSnake] = useState([{ x: 5, y: 5 }]);
+  const [snake, setSnake] = useState([{ x: 8, y: 5 }]);
   const [direction, setDirection] = useState('back');
   const [gameOver, setGameOver] = useState(false);
   const [image, setImage] = useState(back);
@@ -52,7 +53,7 @@ const Game = () => {
     setSnake([head, ...snake.slice(0, -1)]);
   };
 
-  const handleKeyPress = (event: { key: any; }) => {
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
     switch (event.key) {
       case 'ArrowUp':
         setDirection('up');
@@ -76,8 +77,9 @@ const Game = () => {
   };
 
   return (
-    <Wrapper onKeyDown={handleKeyPress}>
+    <Wrapper onKeyDown={handleKeyPress} tabIndex={0}>
       <Background />
+      <GameFrame />
       <Canvas>
         {snake.map((block, index) => (
           <SnakeBlock src={image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
@@ -98,11 +100,17 @@ const Wrapper = styled.div`
   justify-content: center;
 `;
 
+const GameFrame = styled.div`
+  width: 700px;
+  height: 460px;
+  background: url(${GFrame});
+  position: absolute;
+`;
+
 const Canvas = styled.div`
   width: ${GAME_WIDTH}px;
   height: ${GAME_HEIGHT}px;
   position: absolute;
-  border: 1px solid black;
 `;
 
 const SnakeBlock = styled.img`
