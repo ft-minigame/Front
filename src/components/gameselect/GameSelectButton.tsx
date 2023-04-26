@@ -1,12 +1,7 @@
 import styled from 'styled-components';
 import { useHoverImage } from '../../hooks/useHoverImage';
 import React from 'react';
-
-interface GameSelectButtonProps {
-  defaultThumbnail: string;
-  src: string;
-  restProps: any;
-}
+import { GameSelectButtonProps } from '../../types/GameSelectButtonType';
 
 export const GameSelectButton = ({ defaultThumbnail, src: _src, ...restProps }: GameSelectButtonProps) => {
   const { src, onMouseOver, onMouseLeave } = useHoverImage(defaultThumbnail, _src);

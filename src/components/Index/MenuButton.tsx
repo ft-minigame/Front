@@ -1,13 +1,7 @@
 import styled from 'styled-components';
 import { useHoverImage } from '../../hooks/useHoverImage';
 import React from 'react';
-
-interface MenuButtonProps {
-  defaultThumbnail: string;
-  src: string;
-  onClick: () => void;
-  restProps: any;
-}
+import { MenuButtonProps } from '../../types/MenuButtonType';
 
 export const MenuButton = ({ defaultThumbnail, src: _src, onClick, ...restProps }: MenuButtonProps) => {
   const { src, onMouseOver, onMouseLeave } = useHoverImage(defaultThumbnail, _src);
