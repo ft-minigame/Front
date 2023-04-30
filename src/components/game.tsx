@@ -62,6 +62,12 @@ const Game = () => {
     }
   
     const newSnake = [head, ...snake.slice(0, -1)];
+
+    if (newSnake.length > 1 && newSnake.slice(1).some(block => block.x === head.x && block.y === head.y)) {
+      setGameOver(true);
+      return;
+    }
+
     setSnake(newSnake);
   
     if (item.visible && item.x === head.x && item.y === head.y) {
