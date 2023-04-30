@@ -7,6 +7,7 @@ import left from '../assets/images/character/left.png';
 import right from '../assets/images/character/right.png';
 import GFrame from '../assets/images/SnakeGame/Grid_Frame.png'
 import itemImage from '../assets/images/SnakeGame/item.png';
+import { SnakeGameType } from '../types/SnakeGameType';
 import React from 'react';
 
 const GAME_WIDTH = 680;
@@ -14,7 +15,7 @@ const GAME_HEIGHT = 440;
 const CHARACTER_SIZE = 40;
 
 const Game = () => {
-  const [snake, setSnake] = useState([{ x: 8, y: 5 }]);
+  const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 8, y: 5, image: back }]);
   const [direction, setDirection] = useState('back');
   const [gameOver, setGameOver] = useState(false);
   const [image, setImage] = useState(back);
@@ -42,19 +43,23 @@ const Game = () => {
     switch (direction) {
       case 'up':
         head.y -= 1;
+        head.image = image;
         break;
       case 'down':
         head.y += 1;
+        head.image = image;
         break;
       case 'left':
         head.x -= 1;
+        head.image = image;
         break;
       case 'right':
         head.x += 1;
+        head.image = image;
         break;
       default:
         break;
-    }  
+    }
   
     if (head.x < 0 || head.x * CHARACTER_SIZE >= GAME_WIDTH || head.y < 0 || head.y * CHARACTER_SIZE >= GAME_HEIGHT) {
       setGameOver(true);
@@ -123,11 +128,11 @@ const Game = () => {
       <Background />
       <GameFrame />
       <Canvas>
-      {snake.map((block, index) => (
-        <SnakeBlock src={image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
-      ))}
-      {item.visible && <SnakeBlock src={itemImage} style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }} />}
-    </Canvas>
+        {snake.map((block, index) => (
+          <SnakeBlock src={block.image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
+        ))}
+        {item.visible && <SnakeBlock src={itemImage} style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }} />}
+      </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
     </Wrapper>
   );
