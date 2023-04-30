@@ -80,25 +80,27 @@ const Game = () => {
   };
 
   const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    switch (event.key) {
-      case 'ArrowUp':
-        setDirection('up');
-        setImage(back);
-        break;
-      case 'ArrowDown':
-        setDirection('down');
-        setImage(front);
-        break;
-      case 'ArrowLeft':
-        setDirection('left');
-        setImage(left);
-        break;
-      case 'ArrowRight':
-        setDirection('right');
-        setImage(right);
-        break;
-      default:
-        break;
+    if (!gameOver) {
+      switch (event.key) {
+        case 'ArrowUp':
+          setDirection('up');
+          setImage(back);
+          break;
+        case 'ArrowDown':
+          setDirection('down');
+          setImage(front);
+          break;
+        case 'ArrowLeft':
+          setDirection('left');
+          setImage(left);
+          break;
+        case 'ArrowRight':
+          setDirection('right');
+          setImage(right);
+          break;
+        default:
+          break;
+      }
     }
   };
 
