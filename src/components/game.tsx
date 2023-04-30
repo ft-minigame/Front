@@ -83,20 +83,28 @@ const Game = () => {
     if (!gameOver) {
       switch (event.key) {
         case 'ArrowUp':
-          setDirection('up');
-          setImage(back);
+          if (direction !== 'down') {
+            setDirection('up');
+            setImage(back);
+          }
           break;
         case 'ArrowDown':
-          setDirection('down');
-          setImage(front);
+          if (direction !== 'up') {
+            setDirection('down');
+            setImage(front);
+          }
           break;
         case 'ArrowLeft':
-          setDirection('left');
-          setImage(left);
+          if (direction !== 'right') {
+            setDirection('left');
+            setImage(left);
+          }
           break;
         case 'ArrowRight':
-          setDirection('right');
-          setImage(right);
+          if (direction !== 'left') {
+            setDirection('right');
+            setImage(right);
+          }
           break;
         default:
           break;
