@@ -4,13 +4,14 @@ import SelectTitle from '../../assets/images/Index/game_select.png';
 import { GameSelectButton } from './GameSelectButton';
 import { MoaMoa, MoaMoaThumbnail, Ready, ReadyThumbnail } from '../../assets/images/GameSelect';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Games = [
   {
     id: 0,
     src: MoaMoa,
     defaultThumbnail: MoaMoaThumbnail,
-    url: '',
+    url: '/snakegame',
   },
   {
     id: 1,
@@ -27,6 +28,8 @@ const Games = [
 ];
 
 export const GameSelect = () => {
+  const navigate = useNavigate();
+  
   return (
     <Wrapper>
       <Background />
@@ -37,7 +40,9 @@ export const GameSelect = () => {
           key={id} 
           defaultThumbnail={defaultThumbnail} 
           src={src}
-          restProps={undefined}  />
+          onClick={() => {
+            navigate(url);
+          }} restProps={undefined} />
         ))}
       </ButtonWrapper>
     </Wrapper>

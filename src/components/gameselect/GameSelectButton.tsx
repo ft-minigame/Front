@@ -3,11 +3,11 @@ import { useHoverImage } from '../../hooks/useHoverImage';
 import React from 'react';
 import { GameSelectButtonProps } from '../../types/GameSelectButtonType';
 
-export const GameSelectButton = ({ defaultThumbnail, src: _src, ...restProps }: GameSelectButtonProps) => {
+export const GameSelectButton = ({ defaultThumbnail, src: _src, onClick, ...restProps }: GameSelectButtonProps) => {
   const { src, onMouseOver, onMouseLeave } = useHoverImage(defaultThumbnail, _src);
 
   return (
-    <Button onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} {...restProps}>
+    <Button onMouseOver={onMouseOver} onMouseLeave={onMouseLeave} onClick={onClick} {...restProps}>
       <ButtonImg src={src} />
     </Button>
   );
