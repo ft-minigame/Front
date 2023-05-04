@@ -20,6 +20,7 @@ const Game = () => {
   const [gameOver, setGameOver] = useState(false);
   const [image, setImage] = useState(back);
   const [item, setItem] = useState({ x: 0, y: 0, visible: false });
+  const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -28,6 +29,23 @@ const Game = () => {
 
     return () => clearInterval(intervalId);
   }, [snake]);
+
+  const showScore = () => {
+    const digits = score.toString().split("");
+    const scoreImages = digits.map((digit, index) => {
+      const leftPos = CHARACTER_SIZE * 7 + CHARACTER_SIZE * index;
+      const opacity = (snake.some((block) => (block.x === index + 7 && block.y === 0) || (block.x === index + 8 && block.y === 0) || (block.x === index + 7 && block.y === 1) || (block.x === index + 8 && block.y === 1) ) ? 0.5 : 1); 
+      return (
+        <ScoreImg
+          key={index}
+          src={`${process.env.PUBLIC_URL}/Number/${digit}.png`}
+          alt={`digit-${digit}`}
+          style={{ left: leftPos, opacity: opacity }}
+        />
+      );
+    });
+    return <div style={{ position: "relative" }}>{scoreImages}</div>;
+  };  
 
   const showItem = () => {
     const newItem = {
@@ -83,6 +101,7 @@ const Game = () => {
       };
       setItem(newItem);
       setSnake([...newSnake, snake[snake.length - 1]]);
+      setScore(score + 1);
     }
   
     if (!item.visible) {
@@ -132,6 +151,7 @@ const Game = () => {
           <SnakeBlock src={block.image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
         ))}
         {item.visible && <SnakeBlock src={itemImage} style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }} />}
+        {showScore()}
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
     </Wrapper>
@@ -172,4 +192,10 @@ const GameOver = styled.div`
   font-size: 2rem;
   color: red;
   text-align: center;
+`;
+
+const ScoreImg = styled.img`
+  position: absolute;
+  width: ${CHARACTER_SIZE * 2}px;
+  height: ${CHARACTER_SIZE * 2}px;
 `;
