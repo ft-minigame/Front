@@ -9,8 +9,10 @@ import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png'
 import itemImage from '../../assets/images/SnakeGame/item.png';
 import ShowScore from './ShowScore';
 import KeyPressHandle from './KeyPressHandle';
+import Modal from '../modal/modal';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
+import { setFips } from 'crypto';
 
 const GAME_WIDTH = 680;
 const GAME_HEIGHT = 440;
@@ -20,16 +22,20 @@ const Game = () => {
   const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 8, y: 5, image: back }]);
   const [direction, setDirection] = useState('back');
   const [gameOver, setGameOver] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [pause, setPause] = useState(false);
   const [item, setItem] = useState({ x: 0, y: 0, visible: false });
   const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      moveSnake();
+      if (!pause) {
+        moveSnake();
+      }
     }, 100);
 
     return () => clearInterval(intervalId);
-  }, [snake]);
+  }, [snake, pause]);
 
   const showItem = () => {
     const newItem = {
@@ -95,7 +101,14 @@ const Game = () => {
   
   const handleKeyDown = (event : React.KeyboardEvent<HTMLDivElement>) => {
     const newDirection = KeyPressHandle({ event, direction, gameOver });
-    if (newDirection) setDirection(newDirection);
+    if (newDirection === 'modal'){
+      setShowModal(true);
+      setPause(true);
+    } else if (newDirection === 'close'){
+      setShowModal(false);
+      setPause(false);
+    }
+    setDirection(newDirection as string);
   };
 
   return (
@@ -110,6 +123,7 @@ const Game = () => {
         <ShowScore snake={snake} score={score} restProps={undefined} />
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
+      {showModal && <Modal />}
     </Wrapper>
   );
 };

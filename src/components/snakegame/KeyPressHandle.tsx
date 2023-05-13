@@ -23,6 +23,11 @@ const KeyPressHandle = ({event, direction, gameOver}: KeyPressHandleProps) => {
             return 'right';
           }
           break;
+        case ' ':
+          if (direction === 'modal') {
+            return 'close';
+          }
+          return 'modal';
         default:
           return direction;
       }
