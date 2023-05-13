@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
-import Background from './background';
-import back from '../assets/images/character/back.png';
-import front from '../assets/images/character/front.png';
-import left from '../assets/images/character/left.png';
-import right from '../assets/images/character/right.png';
-import GFrame from '../assets/images/SnakeGame/Grid_Frame.png'
-import itemImage from '../assets/images/SnakeGame/item.png';
-import { SnakeGameType } from '../types/SnakeGameType';
+import Background from '../background';
+import back from '../../assets/images/character/back.png';
+import front from '../../assets/images/character/front.png';
+import left from '../../assets/images/character/left.png';
+import right from '../../assets/images/character/right.png';
+import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png'
+import itemImage from '../../assets/images/SnakeGame/item.png';
+import ShowScore from './ShowScore';
+import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
 
 const GAME_WIDTH = 680;
@@ -29,23 +30,6 @@ const Game = () => {
 
     return () => clearInterval(intervalId);
   }, [snake]);
-
-  const showScore = () => {
-    const digits = score.toString().split("");
-    const scoreImages = digits.map((digit, index) => {
-      const leftPos = CHARACTER_SIZE * 7 + CHARACTER_SIZE * index;
-      const opacity = (snake.some((block) => (block.x === index + 7 && block.y === 0) || (block.x === index + 8 && block.y === 0) || (block.x === index + 7 && block.y === 1) || (block.x === index + 8 && block.y === 1) ) ? 0.5 : 1); 
-      return (
-        <ScoreImg
-          key={index}
-          src={`${process.env.PUBLIC_URL}/Number/${digit}.png`}
-          alt={`digit-${digit}`}
-          style={{ left: leftPos, opacity: opacity }}
-        />
-      );
-    });
-    return <div style={{ position: "relative" }}>{scoreImages}</div>;
-  };  
 
   const showItem = () => {
     const newItem = {
@@ -151,7 +135,7 @@ const Game = () => {
           <SnakeBlock src={block.image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
         ))}
         {item.visible && <SnakeBlock src={itemImage} style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }} />}
-        {showScore()}
+        <ShowScore snake={snake} score={score} restProps={undefined} />
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
     </Wrapper>
@@ -192,10 +176,4 @@ const GameOver = styled.div`
   font-size: 2rem;
   color: red;
   text-align: center;
-`;
-
-const ScoreImg = styled.img`
-  position: absolute;
-  width: ${CHARACTER_SIZE * 2}px;
-  height: ${CHARACTER_SIZE * 2}px;
 `;
