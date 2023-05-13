@@ -8,6 +8,7 @@ import right from '../../assets/images/character/right.png';
 import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png'
 import itemImage from '../../assets/images/SnakeGame/item.png';
 import ShowScore from './ShowScore';
+import KeyPressHandle from './KeyPressHandle';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
 
@@ -19,7 +20,6 @@ const Game = () => {
   const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 8, y: 5, image: back }]);
   const [direction, setDirection] = useState('back');
   const [gameOver, setGameOver] = useState(false);
-  const [image, setImage] = useState(back);
   const [item, setItem] = useState({ x: 0, y: 0, visible: false });
   const [score, setScore] = useState<number>(0);
 
@@ -45,19 +45,19 @@ const Game = () => {
     switch (direction) {
       case 'up':
         head.y -= 1;
-        head.image = image;
+        head.image = back;
         break;
       case 'down':
         head.y += 1;
-        head.image = image;
+        head.image = front;
         break;
       case 'left':
         head.x -= 1;
-        head.image = image;
+        head.image = left;
         break;
       case 'right':
         head.x += 1;
-        head.image = image;
+        head.image = right;
         break;
       default:
         break;
@@ -92,42 +92,14 @@ const Game = () => {
       showItem();
     }
   };
-
-  const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (!gameOver) {
-      switch (event.key) {
-        case 'ArrowUp':
-          if (direction !== 'down') {
-            setDirection('up');
-            setImage(back);
-          }
-          break;
-        case 'ArrowDown':
-          if (direction !== 'up') {
-            setDirection('down');
-            setImage(front);
-          }
-          break;
-        case 'ArrowLeft':
-          if (direction !== 'right') {
-            setDirection('left');
-            setImage(left);
-          }
-          break;
-        case 'ArrowRight':
-          if (direction !== 'left') {
-            setDirection('right');
-            setImage(right);
-          }
-          break;
-        default:
-          break;
-      }
-    }
+  
+  const handleKeyDown = (event : React.KeyboardEvent<HTMLDivElement>) => {
+    const newDirection = KeyPressHandle({ event, direction, gameOver });
+    if (newDirection) setDirection(newDirection);
   };
 
   return (
-    <Wrapper onKeyDown={handleKeyPress} tabIndex={0}>
+    <Wrapper onKeyDown={handleKeyDown} tabIndex={0}>
       <Background />
       <GameFrame />
       <Canvas>
