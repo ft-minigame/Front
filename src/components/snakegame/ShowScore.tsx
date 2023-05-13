@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import React from 'react';
-import { SnakeGameType } from '../../types/SnakeGameType';
 import { ShowScoreProps } from '../../types/ShowScoreProps'
 
 const CHARACTER_SIZE = 40;
