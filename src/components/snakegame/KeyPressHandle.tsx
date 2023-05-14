@@ -1,36 +1,21 @@
 import {KeyPressHandleProps} from '../../types/KeyPressHandle';
 
 const KeyPressHandle = ({event, direction, gameOver}: KeyPressHandleProps) => {
-    if (!gameOver) {
-      switch (event.key) {
-        case 'ArrowUp':
-          if (direction !== 'down') {
-            return 'up';
-          }
-          break;
-        case 'ArrowDown':
-          if (direction !== 'up') {
-            return 'down';
-          }
-          break;
-        case 'ArrowLeft':
-          if (direction !== 'right') {
-            return 'left';
-          }
-          break;
-        case 'ArrowRight':
-          if (direction !== 'left') {
-            return 'right';
-          }
-          break;
-        case ' ':
-          if (direction === 'modal') {
-            return 'close';
-          }
-          return 'modal';
-        default:
-          return direction;
-      }
+    if (gameOver) return null;
+
+    switch (event.key) {
+      case "ArrowUp":
+        return direction !== "down" ? "up" : null;
+      case "ArrowDown":
+        return direction !== "up" ? "down" : null;
+      case "ArrowLeft":
+        return direction !== "right" ? "left" : null;
+      case "ArrowRight":
+        return direction !== "left" ? "right" : null;
+      case " ":
+        return direction === "modal" ? "close" : "modal";
+      default:
+        return null;
     }
   };
 
