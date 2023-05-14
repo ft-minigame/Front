@@ -10,6 +10,7 @@ import itemImage from '../../assets/images/SnakeGame/item.png';
 import ShowScore from './ShowScore';
 import KeyPressHandle from './KeyPressHandle';
 import PauseModal from '../modal/pauseModal';
+import ReadyModal from '../modal/ReadyModal'
 import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
 import { setFips } from 'crypto';
@@ -19,23 +20,29 @@ const GAME_HEIGHT = 440;
 const CHARACTER_SIZE = 40;
 
 const Game = () => {
-  const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 8, y: 5, image: back }]);
-  const [direction, setDirection] = useState('back');
+  const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 3, y: 3, image: right }]);
+  const [direction, setDirection] = useState('right');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [ready, setReady,] = useState(true);
   const [pause, setPause] = useState(false);
   const [item, setItem] = useState({ x: 0, y: 0, visible: false });
   const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (!pause) {
+      if (ready){
+        setTimeout(() => {
+          setReady(false);
+        }, 2000);
+      }
+      else if (!pause) {
         moveSnake();
       }
     }, 100);
 
     return () => clearInterval(intervalId);
-  }, [snake, pause]);
+  }, [snake, pause, ready]);
 
   const showItem = () => {
     const newItem = {
@@ -98,6 +105,7 @@ const Game = () => {
   };
   
   const handleKeyDown = (event : React.KeyboardEvent<HTMLDivElement>) => {
+    if (ready) return;
     const newDirection = KeyPressHandle({ event, direction, gameOver });
     if (newDirection) setDirection(newDirection);
     if (newDirection === 'modal'){
@@ -110,8 +118,8 @@ const Game = () => {
   };
 
   const restartGame = () => {
-    setSnake([{ x: 8, y: 5, image: back }]);
-    setDirection('back');
+    setSnake([{ x: 3, y: 3, image: right }]);
+    setDirection('right');
     setGameOver(false);
     setShowModal(false);
     setPause(false);
@@ -132,6 +140,7 @@ const Game = () => {
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
       {showModal && <PauseModal restart={restartGame} />}
+      {ready && <ReadyModal ready={ready} />}
     </Wrapper>
   );
 };

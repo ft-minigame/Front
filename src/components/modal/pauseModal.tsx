@@ -1,9 +1,9 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled from "styled-components";
-import pauseImg from '../../assets/images/Modal/pause.png';
-import restartImg from '../../assets/images/Modal/restart.png';
-import menuImg from '../../assets/images/Modal/menu.png';
+import pauseImg from '../../assets/images/Modal/pause/pause.png';
+import restartImg from '../../assets/images/Modal/pause/restart.png';
+import menuImg from '../../assets/images/Modal/pause/menu.png';
 import { PauseModalType } from '../../types/PauseModalType';
 
 function PauseModal({ restart }: PauseModalType ) {
