@@ -75,12 +75,10 @@ const Game = () => {
     }
   
     const newSnake = [head, ...snake.slice(0, -1)];
-
     if (newSnake.length > 1 && newSnake.slice(1).some(block => block.x === head.x && block.y === head.y)) {
       setGameOver(true);
       return;
     }
-
     setSnake(newSnake);
   
     if (item.visible && item.x === head.x && item.y === head.y) {
@@ -101,6 +99,7 @@ const Game = () => {
   
   const handleKeyDown = (event : React.KeyboardEvent<HTMLDivElement>) => {
     const newDirection = KeyPressHandle({ event, direction, gameOver });
+    if (newDirection) setDirection(newDirection);
     if (newDirection === 'modal'){
       setShowModal(true);
       setPause(true);
@@ -108,7 +107,6 @@ const Game = () => {
       setShowModal(false);
       setPause(false);
     }
-    setDirection(newDirection as string);
   };
 
   return (
