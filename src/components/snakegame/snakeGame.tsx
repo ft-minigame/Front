@@ -121,7 +121,7 @@ const Game = () => {
       setShowModal(false);
       setReady(true);
       setPause(false);
-    } else if (newDirection) {
+    } else if (newDirection && !pause) {
       setDirection(newDirection);
       setTempDirec(newDirection);
     }
