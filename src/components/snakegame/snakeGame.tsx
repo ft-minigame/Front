@@ -23,6 +23,7 @@ const Game = () => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 3, y: 3, image: right }]);
   const [direction, setDirection] = useState('right');
+  const [tempDirec, setTempDirec] = useState('right');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [ready, setReady,] = useState(true);
@@ -110,13 +111,19 @@ const Game = () => {
   const handleKeyDown = (event : React.KeyboardEvent<HTMLDivElement>) => {
     if (ready) return;
     const newDirection = KeyPressHandle({ event, direction, gameOver });
-    if (newDirection) setDirection(newDirection);
+    
     if (newDirection === 'modal'){
+      setDirection(newDirection);
       setShowModal(true);
       setPause(true);
     } else if (newDirection === 'close'){
+      setDirection(tempDirec);
       setShowModal(false);
+      setReady(true);
       setPause(false);
+    } else if (newDirection) {
+      setDirection(newDirection);
+      setTempDirec(newDirection);
     }
   };
 
@@ -128,6 +135,7 @@ const Game = () => {
     setPause(false);
     setItem({ x: 0, y: 0, visible: false });
     setScore(0);
+    setReady(true);
   };
 
   return (
