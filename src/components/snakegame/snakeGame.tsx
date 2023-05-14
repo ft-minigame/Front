@@ -9,7 +9,7 @@ import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png'
 import itemImage from '../../assets/images/SnakeGame/item.png';
 import ShowScore from './ShowScore';
 import KeyPressHandle from './KeyPressHandle';
-import Modal from '../modal/modal';
+import PauseModal from '../modal/pauseModal';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
 import { setFips } from 'crypto';
@@ -109,6 +109,16 @@ const Game = () => {
     }
   };
 
+  const restartGame = () => {
+    setSnake([{ x: 8, y: 5, image: back }]);
+    setDirection('back');
+    setGameOver(false);
+    setShowModal(false);
+    setPause(false);
+    setItem({ x: 0, y: 0, visible: false });
+    setScore(0);
+  };
+
   return (
     <Wrapper onKeyDown={handleKeyDown} tabIndex={0}>
       <Background />
@@ -121,7 +131,7 @@ const Game = () => {
         <ShowScore snake={snake} score={score} restProps={undefined} />
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
-      {showModal && <Modal />}
+      {showModal && <PauseModal restart={restartGame} />}
     </Wrapper>
   );
 };
