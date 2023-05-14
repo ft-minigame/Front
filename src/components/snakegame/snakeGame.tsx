@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Background from '../background';
 import back from '../../assets/images/character/back.png';
 import front from '../../assets/images/character/front.png';
@@ -20,6 +20,7 @@ const GAME_HEIGHT = 440;
 const CHARACTER_SIZE = 40;
 
 const Game = () => {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 3, y: 3, image: right }]);
   const [direction, setDirection] = useState('right');
   const [gameOver, setGameOver] = useState(false);
@@ -39,10 +40,12 @@ const Game = () => {
       else if (!pause) {
         moveSnake();
       }
+
+      inputRef.current?.focus();
     }, 100);
 
     return () => clearInterval(intervalId);
-  }, [snake, pause, ready]);
+  }, [snake, pause, ready, inputRef]);
 
   const showItem = () => {
     const newItem = {
@@ -128,7 +131,7 @@ const Game = () => {
   };
 
   return (
-    <Wrapper onKeyDown={handleKeyDown} tabIndex={0}>
+    <Wrapper ref={inputRef} tabIndex={0} onKeyDown={handleKeyDown} >
       <Background />
       <GameFrame />
       <Canvas>
