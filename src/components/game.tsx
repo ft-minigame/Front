@@ -1,11 +1,10 @@
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { useState, useEffect } from 'react';
-import Background from './background';
 import back from '../assets/images/character/back.png';
 import front from '../assets/images/character/front.png';
 import left from '../assets/images/character/left.png';
 import right from '../assets/images/character/right.png';
-import React from 'react';
+import Background from './background';
 
 const GAME_WIDTH = 680;
 const GAME_HEIGHT = 440;
@@ -44,7 +43,12 @@ const Game = () => {
         break;
     }
 
-    if (head.x < 0 || head.x * CHARACTER_SIZE >= GAME_WIDTH || head.y < 0 || head.y * CHARACTER_SIZE >= GAME_HEIGHT) {
+    if (
+      head.x < 0 ||
+      head.x * CHARACTER_SIZE >= GAME_WIDTH ||
+      head.y < 0 ||
+      head.y * CHARACTER_SIZE >= GAME_HEIGHT
+    ) {
       setGameOver(true);
       return;
     }
@@ -52,7 +56,7 @@ const Game = () => {
     setSnake([head, ...snake.slice(0, -1)]);
   };
 
-  const handleKeyPress = (event: { key: any; }) => {
+  const handleKeyPress = (event: { key: any }) => {
     switch (event.key) {
       case 'ArrowUp':
         setDirection('up');
@@ -80,7 +84,11 @@ const Game = () => {
       <Background />
       <Canvas>
         {snake.map((block, index) => (
-          <SnakeBlock src={image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
+          <SnakeBlock
+            src={image}
+            key={index}
+            style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }}
+          />
         ))}
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
