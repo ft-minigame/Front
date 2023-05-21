@@ -1,19 +1,19 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useState, useEffect, useRef } from 'react';
-import Background from '../background';
+import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png';
+import itemImage from '../../assets/images/SnakeGame/item.png';
 import back from '../../assets/images/character/back.png';
 import front from '../../assets/images/character/front.png';
 import left from '../../assets/images/character/left.png';
 import right from '../../assets/images/character/right.png';
-import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png';
-import itemImage from '../../assets/images/SnakeGame/item.png';
-import ShowScore from './ShowScore';
+import Background from '../background';
 import KeyPressHandle from './KeyPressHandle';
+import ShowScore from './ShowScore';
+
+import React from 'react';
+import { SnakeGameType } from '../../types/SnakeGameType';
 import PauseModal from '../modal/PauseModal';
 import ReadyModal from '../modal/ReadyModal';
-import { SnakeGameType } from '../../types/SnakeGameType';
-import React from 'react';
-import { setFips } from 'crypto';
 
 const GAME_WIDTH = 680;
 const GAME_HEIGHT = 440;
