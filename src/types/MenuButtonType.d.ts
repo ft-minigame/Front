@@ -3,4 +3,4 @@ export interface MenuButtonProps {
   src: string;
   onClick: () => void;
   restProps: any;
-};
+}

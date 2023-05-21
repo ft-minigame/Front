@@ -1,3 +1,3 @@
-export interface PauseModalType{
-    restart: () => void;
+export interface PauseModalType {
+  restart: () => void;
 }

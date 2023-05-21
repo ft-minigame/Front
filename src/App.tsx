@@ -6,7 +6,7 @@ import React from 'react';
 
 function App() {
   return (
-    <Router >
+    <Router>
       <GlobalStyle />
       <Routes>
         <Route path="/" element={<Index />} />

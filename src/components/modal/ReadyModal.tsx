@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import styled from "styled-components";
+import styled from 'styled-components';
 import readyImg from '../../assets/images/Modal/ready/ready.png';
 import startImg from '../../assets/images/Modal/ready/start.png';
 import { ReadyModalType } from '../../types/ReadyModalType';
 
-const ReadyModal = ( {ready}: ReadyModalType ) => {
-	const [showStart, setShowStart] = useState(false);
+const ReadyModal = ({ ready }: ReadyModalType) => {
+  const [showStart, setShowStart] = useState(false);
 
-	useEffect(() => {
+  useEffect(() => {
     const timer = setTimeout(() => {
       setShowStart(true);
     }, 1000);
@@ -17,12 +17,12 @@ const ReadyModal = ( {ready}: ReadyModalType ) => {
     };
   }, []);
 
-	return (
-			<Wrapper>
-					<ImgTag src={showStart ? startImg : readyImg} />
-			</Wrapper>
-	);
-}
+  return (
+    <Wrapper>
+      <ImgTag src={showStart ? startImg : readyImg} />
+    </Wrapper>
+  );
+};
 
 export default ReadyModal;
 
@@ -46,5 +46,4 @@ const ImgTag = styled.img`
   width: 350px;
   height: 250px;
   object-fit: cover;
-`
-
+`;

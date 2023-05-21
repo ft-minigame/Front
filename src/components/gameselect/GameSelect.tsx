@@ -29,20 +29,22 @@ const Games = [
 
 export const GameSelect = () => {
   const navigate = useNavigate();
-  
+
   return (
     <Wrapper>
       <Background />
       <BackImage />
       <ButtonWrapper>
         {Games.map(({ id, defaultThumbnail, src, url }) => (
-          <GameSelectButton 
-          key={id} 
-          defaultThumbnail={defaultThumbnail} 
-          src={src}
-          onClick={() => {
-            navigate(url);
-          }} restProps={undefined} />
+          <GameSelectButton
+            key={id}
+            defaultThumbnail={defaultThumbnail}
+            src={src}
+            onClick={() => {
+              navigate(url);
+            }}
+            restProps={undefined}
+          />
         ))}
       </ButtonWrapper>
     </Wrapper>

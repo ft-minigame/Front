@@ -5,12 +5,12 @@ import back from '../../assets/images/character/back.png';
 import front from '../../assets/images/character/front.png';
 import left from '../../assets/images/character/left.png';
 import right from '../../assets/images/character/right.png';
-import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png'
+import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png';
 import itemImage from '../../assets/images/SnakeGame/item.png';
 import ShowScore from './ShowScore';
 import KeyPressHandle from './KeyPressHandle';
 import PauseModal from '../modal/pauseModal';
-import ReadyModal from '../modal/ReadyModal'
+import ReadyModal from '../modal/ReadyModal';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
 import { setFips } from 'crypto';
@@ -26,19 +26,18 @@ const Game = () => {
   const [tempDirec, setTempDirec] = useState('right');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [ready, setReady,] = useState(true);
+  const [ready, setReady] = useState(true);
   const [pause, setPause] = useState(false);
   const [item, setItem] = useState({ x: 0, y: 0, visible: false });
   const [score, setScore] = useState<number>(0);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      if (ready){
+      if (ready) {
         setTimeout(() => {
           setReady(false);
         }, 2000);
-      }
-      else if (!pause) {
+      } else if (!pause) {
         moveSnake();
       }
 
@@ -52,7 +51,7 @@ const Game = () => {
     const newItem = {
       x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
       y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
-      visible: true
+      visible: true,
     };
     setItem(newItem);
   };
@@ -79,44 +78,52 @@ const Game = () => {
       default:
         break;
     }
-  
-    if (head.x < 0 || head.x * CHARACTER_SIZE >= GAME_WIDTH || head.y < 0 || head.y * CHARACTER_SIZE >= GAME_HEIGHT) {
+
+    if (
+      head.x < 0 ||
+      head.x * CHARACTER_SIZE >= GAME_WIDTH ||
+      head.y < 0 ||
+      head.y * CHARACTER_SIZE >= GAME_HEIGHT
+    ) {
       setGameOver(true);
       return;
     }
-  
+
     const newSnake = [head, ...snake.slice(0, -1)];
-    if (newSnake.length > 1 && newSnake.slice(1).some(block => block.x === head.x && block.y === head.y)) {
+    if (
+      newSnake.length > 1 &&
+      newSnake.slice(1).some((block) => block.x === head.x && block.y === head.y)
+    ) {
       setGameOver(true);
       return;
     }
     setSnake(newSnake);
-  
+
     if (item.visible && item.x === head.x && item.y === head.y) {
       const newItem = {
         x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
         y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
-        visible: true
+        visible: true,
       };
       setItem(newItem);
       setSnake([...newSnake, snake[snake.length - 1]]);
       setScore(score + 1);
     }
-  
+
     if (!item.visible) {
       showItem();
     }
   };
-  
-  const handleKeyDown = (event : React.KeyboardEvent<HTMLDivElement>) => {
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (ready) return;
     const newDirection = KeyPressHandle({ event, direction, gameOver });
-    
-    if (newDirection === 'modal'){
+
+    if (newDirection === 'modal') {
       setDirection(newDirection);
       setShowModal(true);
       setPause(true);
-    } else if (newDirection === 'close'){
+    } else if (newDirection === 'close') {
       setDirection(tempDirec);
       setShowModal(false);
       setReady(true);
@@ -139,14 +146,23 @@ const Game = () => {
   };
 
   return (
-    <Wrapper ref={inputRef} tabIndex={0} onKeyDown={handleKeyDown} >
+    <Wrapper ref={inputRef} tabIndex={0} onKeyDown={handleKeyDown}>
       <Background />
       <GameFrame />
       <Canvas>
         {snake.map((block, index) => (
-          <SnakeBlock src={block.image} key={index} style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }} />
+          <SnakeBlock
+            src={block.image}
+            key={index}
+            style={{ left: block.x * CHARACTER_SIZE, top: block.y * CHARACTER_SIZE }}
+          />
         ))}
-        {item.visible && <SnakeBlock src={itemImage} style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }} />}
+        {item.visible && (
+          <SnakeBlock
+            src={itemImage}
+            style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }}
+          />
+        )}
         <ShowScore snake={snake} score={score} restProps={undefined} />
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
