@@ -4,12 +4,14 @@ module.exports = {
     browser: true,
     es2021: true,
   },
+  parser: '@typescript-eslint/parser',
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:react-hooks/recommended',
   ],
+  plugins: ['@typescript-eslint/eslint-plugin'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
