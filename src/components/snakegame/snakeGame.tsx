@@ -9,7 +9,7 @@ import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png';
 import itemImage from '../../assets/images/SnakeGame/item.png';
 import ShowScore from './ShowScore';
 import KeyPressHandle from './KeyPressHandle';
-import PauseModal from '../modal/pauseModal';
+import PauseModal from '../modal/PauseModal';
 import ReadyModal from '../modal/ReadyModal';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
