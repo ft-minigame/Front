@@ -116,7 +116,7 @@ const Game = () => {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (ready) return;
+    if (gameOver || ready) return;
     const newDirection = KeyPressHandle({ event, direction, gameOver });
 
     if (newDirection === 'modal') {
