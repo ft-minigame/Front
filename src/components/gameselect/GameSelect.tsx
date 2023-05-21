@@ -1,9 +1,8 @@
 import styled from 'styled-components';
-import Background from '../background';
-import SelectTitle from '../../assets/images/Index/game_select.png';
-import { GameSelectButton } from './GameSelectButton';
 import { MoaMoa, MoaMoaThumbnail, Ready, ReadyThumbnail } from '../../assets/images/GameSelect';
-import React from 'react';
+import SelectTitle from '../../assets/images/Index/game_select.png';
+import Background from '../background';
+import { GameSelectButton } from './GameSelectButton';
 
 const Games = [
   {
@@ -32,12 +31,13 @@ export const GameSelect = () => {
       <Background />
       <BackImage />
       <ButtonWrapper>
-        {Games.map(({ id, defaultThumbnail, src, url }) => (
-          <GameSelectButton 
-          key={id} 
-          defaultThumbnail={defaultThumbnail} 
-          src={src}
-          restProps={undefined}  />
+        {Games.map(({ id, defaultThumbnail, src }) => (
+          <GameSelectButton
+            key={id}
+            defaultThumbnail={defaultThumbnail}
+            src={src}
+            restProps={undefined}
+          />
         ))}
       </ButtonWrapper>
     </Wrapper>
