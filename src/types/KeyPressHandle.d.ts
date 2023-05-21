@@ -1,5 +1,7 @@
+import type { KeyboardEvent } from 'react';
+
 export interface KeyPressHandleProps {
-  event: React.KeyboardEvent<HTMLDivElement>;
+  event: KeyboardEvent<HTMLDivElement>;
   direction: string;
-  gameOver: bool;
+  gameOver: boolean;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import readyImg from '../../assets/images/Modal/ready/ready.png';
 import startImg from '../../assets/images/Modal/ready/start.png';

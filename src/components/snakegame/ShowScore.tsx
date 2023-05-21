@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import React from 'react';
 import { ShowScoreProps } from '../../types/ShowScoreProps';
 
 const CHARACTER_SIZE = 40;
@@ -20,17 +19,15 @@ const ShowScore = ({ snake, score }: ShowScoreProps) => {
     return (
       <ScoreImg
         key={index}
+        // FIXME: env type assertion
+        // eslint-disable-next-line no-undef
         src={`${process.env.PUBLIC_URL}/Number/${digit}.png`}
         alt={`digit-${digit}`}
         style={{ left: leftPos, opacity: opacity }}
       />
     );
   });
-  return (
-    <div style={{ position: 'relative' }} >
-      {scoreImages}{' '}
-    </div>
-  );
+  return <div style={{ position: 'relative' }}>{scoreImages} </div>;
 };
 
 export default ShowScore;

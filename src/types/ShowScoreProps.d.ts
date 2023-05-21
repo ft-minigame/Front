@@ -1,5 +1,4 @@
 import { SnakeGameType } from './SnakeGameType';
-import { useState } from 'react';
 
 export interface ShowScoreProps {
   snake: SnakeGameType[];
