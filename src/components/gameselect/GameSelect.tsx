@@ -43,7 +43,6 @@ export const GameSelect = () => {
             onClick={() => {
               navigate(url);
             }}
-            restProps={undefined}
           />
         ))}
       </ButtonWrapper>

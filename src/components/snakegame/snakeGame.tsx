@@ -9,7 +9,7 @@ import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png';
 import itemImage from '../../assets/images/SnakeGame/item.png';
 import ShowScore from './ShowScore';
 import KeyPressHandle from './KeyPressHandle';
-import PauseModal from '../modal/pauseModal';
+import PauseModal from '../modal/PauseModal';
 import ReadyModal from '../modal/ReadyModal';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
@@ -116,7 +116,7 @@ const Game = () => {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (ready) return;
+    if (gameOver || ready) return;
     const newDirection = KeyPressHandle({ event, direction, gameOver });
 
     if (newDirection === 'modal') {
@@ -163,7 +163,7 @@ const Game = () => {
             style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }}
           />
         )}
-        <ShowScore snake={snake} score={score} restProps={undefined} />
+        <ShowScore snake={snake} score={score} />
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
       {showModal && <PauseModal restart={restartGame} />}
