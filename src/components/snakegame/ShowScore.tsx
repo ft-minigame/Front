@@ -4,7 +4,7 @@ import { ShowScoreProps } from '../../types/ShowScoreProps';
 
 const CHARACTER_SIZE = 40;
 
-const ShowScore = ({ snake, score, ...restProps }: ShowScoreProps) => {
+const ShowScore = ({ snake, score }: ShowScoreProps) => {
   const digits = score.toString().split('');
   const scoreImages = digits.map((digit, index) => {
     const leftPos = CHARACTER_SIZE * 7 + CHARACTER_SIZE * index;
@@ -27,7 +27,7 @@ const ShowScore = ({ snake, score, ...restProps }: ShowScoreProps) => {
     );
   });
   return (
-    <div style={{ position: 'relative' }} {...restProps}>
+    <div style={{ position: 'relative' }} >
       {scoreImages}{' '}
     </div>
   );
