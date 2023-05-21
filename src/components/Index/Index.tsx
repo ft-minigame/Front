@@ -63,7 +63,9 @@ const Index = () => {
             src={src}
             onClick={() => {
               navigate(url);
-            } } restProps={undefined}          />
+            }}
+            restProps={undefined}
+          />
         ))}
       </ButtonWrapper>
     </Wrapper>

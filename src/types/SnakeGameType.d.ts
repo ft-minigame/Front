@@ -1,5 +1,5 @@
 export interface SnakeGameType {
-    x: number;
-    y: number;
-    image: string;
-  }
+  x: number;
+  y: number;
+  image: string;
+}

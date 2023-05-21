@@ -1,12 +1,12 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import styled from "styled-components";
+import styled from 'styled-components';
 import pauseImg from '../../assets/images/Modal/pause/pause.png';
 import restartImg from '../../assets/images/Modal/pause/restart.png';
 import menuImg from '../../assets/images/Modal/pause/menu.png';
 import { PauseModalType } from '../../types/PauseModalType';
 
-function PauseModal({ restart }: PauseModalType ) {
+function PauseModal({ restart }: PauseModalType) {
   const navigate = useNavigate();
 
   const handleClick1 = () => {
@@ -21,10 +21,10 @@ function PauseModal({ restart }: PauseModalType ) {
     <Wrapper>
       <PauseImgTag src={pauseImg} />
       <ButtonWrapper>
-        <Button onClick={handleClick2} >
+        <Button onClick={handleClick2}>
           <ButtonImg src={restartImg} />
         </Button>
-        <Button onClick={handleClick1} >
+        <Button onClick={handleClick1}>
           <ButtonImg src={menuImg} />
         </Button>
       </ButtonWrapper>
@@ -54,7 +54,7 @@ const PauseImgTag = styled.img`
   width: 350px;
   height: 250px;
   object-fit: cover;
-`
+`;
 const ButtonWrapper = styled.div`
   position: absolute;
   display: flex;
@@ -70,8 +70,8 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
   z-index: 1;
-  padding-right : 30px;
-  padding-left : 30px;
+  padding-right: 30px;
+  padding-left: 30px;
 `;
 
 const ButtonImg = styled.img`
