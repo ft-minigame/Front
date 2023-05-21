@@ -163,7 +163,7 @@ const Game = () => {
             style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }}
           />
         )}
-        <ShowScore snake={snake} score={score} restProps={undefined} />
+        <ShowScore snake={snake} score={score} />
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
       {showModal && <PauseModal restart={restartGame} />}
