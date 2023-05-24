@@ -21,7 +21,7 @@ const ShowScore = ({ snake, score }: ShowScoreProps) => {
         key={index}
         // FIXME: env type assertion
         // eslint-disable-next-line no-undef
-        src={`${process.env.PUBLIC_URL}/Number/${digit}.png`}
+        src={`${process.env.PUBLIC_URL}/assets/Number/${digit}.png`}
         alt={`digit-${digit}`}
         style={{ left: leftPos, opacity: opacity }}
       />
