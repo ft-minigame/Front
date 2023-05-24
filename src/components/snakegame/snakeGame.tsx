@@ -8,8 +8,7 @@ import left from '../../assets/images/character/left.png';
 import right from '../../assets/images/character/right.png';
 import Background from '../background';
 import KeyPressHandle from './KeyPressHandle';
-import ShowScore from './ShowScore';
-
+import ScoreBoard from './ScoreBoard';
 import React from 'react';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import PauseModal from '../modal/PauseModal';
@@ -163,7 +162,7 @@ const Game = () => {
             style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }}
           />
         )}
-        <ShowScore snake={snake} score={score} />
+        <ScoreBoard snake={snake} score={score} />
       </Canvas>
       {gameOver && <GameOver>Game Over!</GameOver>}
       {showModal && <PauseModal restart={restartGame} />}

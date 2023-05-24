@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import { ShowScoreProps } from '../../types/ShowScoreProps';
+import { ScoreBoardProps } from '../../types/ScoreBoardProps';
 
 const CHARACTER_SIZE = 40;
 
-const ShowScore = ({ snake, score }: ShowScoreProps) => {
+const ScoreBoard = ({ snake, score }: ScoreBoardProps) => {
   const digits = score.toString().split('');
   const scoreImages = digits.map((digit, index) => {
     const leftPos = CHARACTER_SIZE * 7 + CHARACTER_SIZE * index;
@@ -30,7 +30,7 @@ const ShowScore = ({ snake, score }: ShowScoreProps) => {
   return <div style={{ position: 'relative' }}>{scoreImages} </div>;
 };
 
-export default ShowScore;
+export default ScoreBoard;
 
 const ScoreImg = styled.img`
   position: absolute;

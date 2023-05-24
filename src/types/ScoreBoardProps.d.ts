@@ -1,6 +1,6 @@
 import { SnakeGameType } from './SnakeGameType';
 
-export interface ShowScoreProps {
+export interface ScoreBoardProps {
   snake: SnakeGameType[];
   score: number;
 }
