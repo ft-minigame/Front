@@ -1,10 +1,9 @@
-import styled from 'styled-components';
-import Background from '../background';
-import SelectTitle from '../../assets/images/Index/game_select.png';
-import { GameSelectButton } from './GameSelectButton';
-import { MoaMoa, MoaMoaThumbnail, Ready, ReadyThumbnail } from '../../assets/images/GameSelect';
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import styled from 'styled-components';
+import { MoaMoa, MoaMoaThumbnail, Ready, ReadyThumbnail } from '../../assets/images/GameSelect';
+import SelectTitle from '../../assets/images/Index/game_select.png';
+import Background from '../background';
+import { GameSelectButton } from './GameSelectButton';
 
 const Games = [
   {
@@ -43,7 +42,6 @@ export const GameSelect = () => {
             onClick={() => {
               navigate(url);
             }}
-            restProps={undefined}
           />
         ))}
       </ButtonWrapper>

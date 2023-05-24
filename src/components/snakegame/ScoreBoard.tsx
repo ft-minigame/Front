@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import React from 'react';
-import { ShowScoreProps } from '../../types/ShowScoreProps';
+import { ScoreBoardProps } from '../../types/ScoreBoardProps';
 
 const CHARACTER_SIZE = 40;
 
-const ShowScore = ({ snake, score, ...restProps }: ShowScoreProps) => {
+const ScoreBoard = ({ snake, score }: ScoreBoardProps) => {
   const digits = score.toString().split('');
   const scoreImages = digits.map((digit, index) => {
     const leftPos = CHARACTER_SIZE * 7 + CHARACTER_SIZE * index;
@@ -20,20 +19,18 @@ const ShowScore = ({ snake, score, ...restProps }: ShowScoreProps) => {
     return (
       <ScoreImg
         key={index}
-        src={`${process.env.PUBLIC_URL}/Number/${digit}.png`}
+        // FIXME: env type assertion
+        // eslint-disable-next-line no-undef
+        src={`${process.env.PUBLIC_URL}/assets/Number/${digit}.png`}
         alt={`digit-${digit}`}
         style={{ left: leftPos, opacity: opacity }}
       />
     );
   });
-  return (
-    <div style={{ position: 'relative' }} {...restProps}>
-      {scoreImages}{' '}
-    </div>
-  );
+  return <div style={{ position: 'relative' }}>{scoreImages} </div>;
 };
 
-export default ShowScore;
+export default ScoreBoard;
 
 const ScoreImg = styled.img`
   position: absolute;

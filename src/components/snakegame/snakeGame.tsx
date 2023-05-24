@@ -1,20 +1,19 @@
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import { useState, useEffect, useRef } from 'react';
-import Background from '../background';
+import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png';
+import itemImage from '../../assets/images/SnakeGame/item.png';
 import back from '../../assets/images/character/back.png';
 import front from '../../assets/images/character/front.png';
 import left from '../../assets/images/character/left.png';
 import right from '../../assets/images/character/right.png';
-import GFrame from '../../assets/images/SnakeGame/Grid_Frame.png';
-import itemImage from '../../assets/images/SnakeGame/item.png';
-import ShowScore from './ShowScore';
+import Background from '../background';
 import KeyPressHandle from './KeyPressHandle';
-import PauseModal from '../modal/pauseModal';
-import GameoverModal from '../modal/gameoverModal';
-import ReadyModal from '../modal/ReadyModal'
-import { SnakeGameType } from '../../types/SnakeGameType';
 import React from 'react';
-import { setFips } from 'crypto';
+import { SnakeGameType } from '../../types/SnakeGameType';
+import PauseModal from '../modal/PauseModal';
+import ReadyModal from '../modal/ReadyModal';
+import GameoverModal from '../modal/gameoverModal';
+import ScoreBoard from './ScoreBoard';
 
 const GAME_WIDTH = 680;
 const GAME_HEIGHT = 440;
@@ -120,7 +119,7 @@ const Game = () => {
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
-    if (ready) return;
+    if (gameOver || ready) return;
     const newDirection = KeyPressHandle({ event, direction, gameOver });
 
     if (newDirection === 'modal') {
@@ -128,7 +127,7 @@ const Game = () => {
       setShowModal(true);
       setPause(true);
       setShowOverlay(true);
-    } else if (newDirection === 'close'){
+    } else if (newDirection === 'close') {
       setDirection(tempDirec);
       setShowModal(false);
       setReady(true);
@@ -171,7 +170,7 @@ const Game = () => {
             style={{ left: item.x * CHARACTER_SIZE, top: item.y * CHARACTER_SIZE }}
           />
         )}
-        <ShowScore snake={snake} score={score} restProps={undefined} />
+        <ScoreBoard snake={snake} score={score} />
       </Canvas>
       {gameOver && <GameoverModal restart={restartGame} />}
       {showModal && <PauseModal restart={restartGame} />}

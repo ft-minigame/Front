@@ -1,8 +1,6 @@
 import { SnakeGameType } from './SnakeGameType';
-import { useState } from 'react';
 
-export interface ShowScoreProps {
+export interface ScoreBoardProps {
   snake: SnakeGameType[];
   score: number;
-  restProps: any;
 }

@@ -1,6 +1,5 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Background from '../background';
-import { MenuButton } from './MenuButton';
 import {
   Cat,
   CatThumbnail,
@@ -13,8 +12,8 @@ import {
   Setting,
   SettingThumbnail,
 } from '../../assets/images/Index';
-import { useNavigate } from 'react-router-dom';
-import React from 'react';
+import Background from '../background';
+import { MenuButton } from './MenuButton';
 
 const Menus = [
   {
@@ -64,7 +63,6 @@ const Index = () => {
             onClick={() => {
               navigate(url);
             }}
-            restProps={undefined}
           />
         ))}
       </ButtonWrapper>
