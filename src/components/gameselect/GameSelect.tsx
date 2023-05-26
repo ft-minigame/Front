@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { MoaMoa, MoaMoaThumbnail, Ready, ReadyThumbnail } from '../../assets/images/GameSelect';
 import SelectTitle from '../../assets/images/Index/game_select.png';
@@ -9,7 +10,7 @@ const Games = [
     id: 0,
     src: MoaMoa,
     defaultThumbnail: MoaMoaThumbnail,
-    url: '',
+    url: '/snakegame',
   },
   {
     id: 1,
@@ -26,17 +27,21 @@ const Games = [
 ];
 
 export const GameSelect = () => {
+  const navigate = useNavigate();
+
   return (
     <Wrapper>
       <Background />
       <BackImage />
       <ButtonWrapper>
-        {Games.map(({ id, defaultThumbnail, src }) => (
+        {Games.map(({ id, defaultThumbnail, src, url }) => (
           <GameSelectButton
             key={id}
             defaultThumbnail={defaultThumbnail}
             src={src}
-            restProps={undefined}
+            onClick={() => {
+              navigate(url);
+            }}
           />
         ))}
       </ButtonWrapper>
