@@ -38,36 +38,36 @@ const Wrapper = styled.div`
   width: 350px;
   height: 250px;
   border: none;
-  padding: 20px;
   z-index: 999;
   display: flex;
   align-items: center;
-  flex-direction: column;
+  justify-content: center;
 `;
 
 const PauseImgTag = styled.img`
   position: absolute;
-  width: 350px;
-  height: 250px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 `;
+
 const ButtonWrapper = styled.div`
   position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  top: 90px;
-  width: 100%;
-  height: 100%;
+  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding-top: 170px;
 `;
 
 const Button = styled.button`
   cursor: pointer;
   background-color: transparent;
   border: none;
-  z-index: 1;
-  padding-right: 30px;
-  padding-left: 30px;
+  margin: 0 10px;
 `;
 
 const ButtonImg = styled.img`
