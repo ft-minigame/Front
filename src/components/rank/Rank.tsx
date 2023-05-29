@@ -28,8 +28,7 @@ const Rank = () => {
       <RankingList>
         {ranking.map((singleRank, index) => (
           <RankingItem key={index}>
-            {' '}
-            {singleRank.nickname} : {singleRank.score}{' '}
+            {singleRank.nickname} : {singleRank.score}
           </RankingItem>
         ))}
       </RankingList>
