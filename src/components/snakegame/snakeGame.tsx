@@ -8,12 +8,12 @@ import left from '../../assets/images/character/left.png';
 import right from '../../assets/images/character/right.png';
 import Background from '../background';
 import KeyPressHandle from './KeyPressHandle';
+import ScoreBoard from './ScoreBoard';
 import React from 'react';
 import { SnakeGameType } from '../../types/SnakeGameType';
 import PauseModal from '../modal/PauseModal';
 import ReadyModal from '../modal/ReadyModal';
 import GameoverModal from '../modal/gameoverModal';
-import ScoreBoard from './ScoreBoard';
 
 const GAME_WIDTH = 680;
 const GAME_HEIGHT = 440;
