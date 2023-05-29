@@ -22,7 +22,7 @@
     "styled-reset": "^4.4.5",
     "web-vitals": "^2.1.4"
   },
-  "proxy" : "https://port-0-mini-backend-p8xrq2mlf3omvfu.sel3.cloudtype.app/",
+  "proxy" : "https://port-0-mini-backend-develop-1aac2alg6v5osh.sel3.cloudtype.app/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
