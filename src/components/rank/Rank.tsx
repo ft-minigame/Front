@@ -14,8 +14,14 @@ const Rank = () => {
       .get('/rank/all')
       .then((response) => {
         console.log('response');
-        console.log(response.data);
-        setRanking(response.data);
+        if (response.status == 200) {
+          console.log(response.status);
+          setRanking(response.data);
+        } else {
+          console.log(response.data);
+          console.log('response error');
+          setError(true);
+        }
       })
       .catch((error) => {
         console.log('error');
