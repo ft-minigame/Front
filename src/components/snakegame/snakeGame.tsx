@@ -142,6 +142,7 @@ const Game = () => {
   const restartGame = () => {
     setSnake([{ x: 3, y: 3, image: right }]);
     setDirection('right');
+    setTempDirec('right');
     setGameOver(false);
     setShowModal(false);
     setPause(false);
