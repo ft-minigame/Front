@@ -11,7 +11,7 @@ const Rank = () => {
 
   useEffect(() => {
     axios
-      .get('/rank/all')
+      .get('https://port-0-mini-backend-develop-1aac2alg6v5osh.sel3.cloudtype.app/rank/all')
       .then((response) => {
         console.log('response');
         if (response.status == 200) {
