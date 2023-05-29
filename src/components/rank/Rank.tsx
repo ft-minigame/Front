@@ -1,35 +1,40 @@
 import styled from 'styled-components';
 import React, { useState, useEffect } from 'react';
 import Background from '../background';
-import RankImg from '../../assets/images/Rank/rank.png'
+import RankImg from '../../assets/images/Rank/rank.png';
 import axios from 'axios';
-import { RankingType } from '../../types/RankingType'
+import { RankingType } from '../../types/RankingType';
 
 const Rank = () => {
-	const [ranking, setRanking] = useState<RankingType[]>([]);
+  const [ranking, setRanking] = useState<RankingType[]>([]);
 
-	useEffect(() => {
-		axios.get('/rank/all')
-			.then((response) => {
-				console.log(response.data);
-				setRanking(response.data);
-		})
-		.catch((error) => {
-			console.log(error);
-		});
-	}, [])
+  useEffect(() => {
+    axios
+      .get('/rank/all')
+      .then((response) => {
+        console.log(response.data);
+        setRanking(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+        setRanking([]);
+      });
+  }, []);
 
-	return (
-		<Wrapper>
-			<Background />
-			<RankImage />
-			<RankingList>
-				{ranking.map((singleRank, index) => (
-					<RankingItem key={index}> {singleRank.nickname} : {singleRank.score} </RankingItem>
-				))}
-			</RankingList>
-		</Wrapper>
-	);
+  return (
+    <Wrapper>
+      <Background />
+      <RankImage />
+      <RankingList>
+        {ranking.map((singleRank, index) => (
+          <RankingItem key={index}>
+            {' '}
+            {singleRank.nickname} : {singleRank.score}{' '}
+          </RankingItem>
+        ))}
+      </RankingList>
+    </Wrapper>
+  );
 };
 
 export default Rank;
@@ -53,17 +58,18 @@ const RankImage = styled.div`
 `;
 
 const RankingList = styled.div`
-	position: absolute;
+  position: absolute;
 `;
 
 const RankingItem = styled.div`
-	margin: 10px;
-	font-size: 30px;
-	font-family: 'drfont_daraehand';
-	@font-face {
-		font-family: 'drfont_daraehand';
-		src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/drfont_daraehand.woff') format('woff');
-		font-weight: normal;
-		font-style: normal;
-	}
+  margin: 10px;
+  font-size: 30px;
+  font-family: 'drfont_daraehand';
+  @font-face {
+    font-family: 'drfont_daraehand';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/drfont_daraehand.woff')
+      format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
 `;
