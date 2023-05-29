@@ -7,6 +7,7 @@ import { RankingType } from '../../types/RankingType';
 
 const Rank = () => {
   const [ranking, setRanking] = useState<RankingType[]>([]);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     axios
@@ -17,7 +18,7 @@ const Rank = () => {
       })
       .catch((error) => {
         console.log(error);
-        setRanking([]);
+        setError(true);
       });
   }, []);
 
@@ -26,11 +27,12 @@ const Rank = () => {
       <Background />
       <RankImage />
       <RankingList>
-        {ranking.map((singleRank, index) => (
-          <RankingItem key={index}>
-            {singleRank.nickname} : {singleRank.score}
-          </RankingItem>
-        ))}
+        {!error &&
+          ranking.map((singleRank, index) => (
+            <RankingItem key={index}>
+              {singleRank.nickname} : {singleRank.score}
+            </RankingItem>
+          ))}
       </RankingList>
     </Wrapper>
   );
