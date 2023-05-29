@@ -8,22 +8,18 @@ import { PauseModalType } from '../../types/PauseModalType';
 function PauseModal({ restart }: PauseModalType) {
   const navigate = useNavigate();
 
-  const handleClick1 = () => {
+  const handleMenuClick = () => {
     navigate('/index');
-  };
-
-  const handleClick2 = () => {
-    restart();
   };
 
   return (
     <Wrapper>
       <PauseImgTag src={pauseImg} />
       <ButtonWrapper>
-        <Button onClick={handleClick2}>
+        <Button onClick={restart}>
           <ButtonImg src={restartImg} />
         </Button>
-        <Button onClick={handleClick1}>
+        <Button onClick={handleMenuClick}>
           <ButtonImg src={menuImg} />
         </Button>
       </ButtonWrapper>
