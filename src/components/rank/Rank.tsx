@@ -13,10 +13,12 @@ const Rank = () => {
     axios
       .get('/rank/all')
       .then((response) => {
+        console.log('response');
         console.log(response.data);
         setRanking(response.data);
       })
       .catch((error) => {
+        console.log('error');
         console.log(error);
         setError(true);
       });
