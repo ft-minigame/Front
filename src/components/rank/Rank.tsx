@@ -4,17 +4,18 @@ import Background from '../background';
 import RankImg from '../../assets/images/Rank/rank.png';
 import axios from 'axios';
 import { RankingType } from '../../types/RankingType';
+import { getPost } from '../apis/api/post';
 
 const Rank = () => {
   const [ranking, setRanking] = useState<RankingType[]>([]);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    axios
-      .get('https://port-0-mini-backend-develop-1aac2alg6v5osh.sel3.cloudtype.app/rank/all')
-      .then((response) => {
-        console.log('response');
-        if (response.status == 200) {
+    const fetchRanking = async () => {
+      try {
+        const response = await getPost('rank/all');
+        console.log(response);
+        if (response.status === 200) {
           console.log(response.status);
           setRanking(response.data);
         } else {
@@ -22,12 +23,13 @@ const Rank = () => {
           console.log('response error');
           setError(true);
         }
-      })
-      .catch((error) => {
-        console.log('error');
-        console.log(error);
+      } catch (error) {
+        console.log('error:', error);
         setError(true);
-      });
+      }
+    };
+
+    fetchRanking();
   }, []);
 
   return (
