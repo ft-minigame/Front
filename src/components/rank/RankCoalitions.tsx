@@ -42,12 +42,14 @@ const RankCoalitions = () => {
       <Background />
       <RankImage />
       <RankingList>
-        <>
-          <RankingItem>gun: {ranking.gun}</RankingItem>
-          <RankingItem>gon: {ranking.gon}</RankingItem>
-          <RankingItem>gam: {ranking.gam}</RankingItem>
-          <RankingItem>lee: {ranking.lee}</RankingItem>
-        </>
+        {!error && (
+          <>
+            <RankingItem>gun: {ranking.gun}</RankingItem>
+            <RankingItem>gon: {ranking.gon}</RankingItem>
+            <RankingItem>gam: {ranking.gam}</RankingItem>
+            <RankingItem>lee: {ranking.lee}</RankingItem>
+          </>
+        )}
       </RankingList>
     </Wrapper>
   );
@@ -75,17 +77,12 @@ const RankImage = styled.div`
 
 const RankingList = styled.div`
   position: absolute;
+  margin-top: 50px;
+  max-height: 320px;
+  overflow-y: auto;
 `;
 
 const RankingItem = styled.div`
   margin: 10px;
   font-size: 30px;
-  font-family: 'drfont_daraehand';
-  @font-face {
-    font-family: 'drfont_daraehand';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_three@1.0/drfont_daraehand.woff')
-      format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
 `;
