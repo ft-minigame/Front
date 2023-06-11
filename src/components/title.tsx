@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import TitleImg from '../assets/images/Title/Title.png';
 import GameStart from '../assets/images/Title/gamestart_button.png';
 import Background from './background';
-import { defaultInstance } from './apis/utils';
+import { defaultInstance } from '../apis/utils';
 import { useEffect } from 'react';
 
 const Title = () => {
