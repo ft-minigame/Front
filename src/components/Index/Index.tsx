@@ -38,7 +38,7 @@ const Menus = [
     id: 3,
     src: Rank,
     defaultThumbnail: RankThumbnail,
-    url: '/rank',
+    url: '/rankall',
   },
   {
     id: 4,

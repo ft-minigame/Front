@@ -2,17 +2,23 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import Background from '../background';
 import RankImg from '../../assets/images/Rank/rank.png';
-import { RankingType } from '../../types/RankingType';
 import { getPost } from '../../apis/api/post';
 
-const Rank = () => {
-  const [ranking, setRanking] = useState<RankingType[]>([]);
+export interface CoalRankingType {
+  gun: number;
+  gon: number;
+  gam: number;
+  lee: number;
+}
+
+const RankCoalitions = () => {
+  const [ranking, setRanking] = useState<CoalRankingType>({} as CoalRankingType);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const fetchRanking = async () => {
       try {
-        const response = await getPost('rank/all');
+        const response = await getPost('rank/coalitions');
         console.log(response);
         if (response.status === 200) {
           console.log(response.status);
@@ -36,18 +42,18 @@ const Rank = () => {
       <Background />
       <RankImage />
       <RankingList>
-        {!error &&
-          ranking.map((singleRank, index) => (
-            <RankingItem key={index}>
-              {singleRank.nickname} : {singleRank.score}
-            </RankingItem>
-          ))}
+        <>
+          <RankingItem>gun: {ranking.gun}</RankingItem>
+          <RankingItem>gon: {ranking.gon}</RankingItem>
+          <RankingItem>gam: {ranking.gam}</RankingItem>
+          <RankingItem>lee: {ranking.lee}</RankingItem>
+        </>
       </RankingList>
     </Wrapper>
   );
 };
 
-export default Rank;
+export default RankCoalitions;
 
 const Wrapper = styled.div`
   height: 100vh;
