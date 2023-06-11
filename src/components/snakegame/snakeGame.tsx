@@ -32,31 +32,6 @@ const Game = () => {
   const [score, setScore] = useState<number>(0);
   const [showOverlay, setShowOverlay] = useState(false);
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      if (ready) {
-        setTimeout(() => {
-          setReady(false);
-        }, 2000);
-      } else if (!pause) {
-        moveSnake();
-      }
-
-      inputRef.current?.focus();
-    }, 100);
-
-    return () => clearInterval(intervalId);
-  }, [snake, pause, ready, inputRef]);
-
-  const showItem = () => {
-    const newItem = {
-      x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
-      y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
-      visible: true,
-    };
-    setItem(newItem);
-  };
-
   const moveSnake = () => {
     const head = { ...snake[0] };
     switch (direction) {
@@ -116,6 +91,31 @@ const Game = () => {
     if (!item.visible) {
       showItem();
     }
+  };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      if (ready) {
+        setTimeout(() => {
+          setReady(false);
+        }, 2000);
+      } else if (!pause) {
+        moveSnake();
+      }
+
+      inputRef.current?.focus();
+    }, 100);
+
+    return () => clearInterval(intervalId);
+  }, [snake, pause, ready, inputRef, moveSnake]);
+
+  const showItem = () => {
+    const newItem = {
+      x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
+      y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
+      visible: true,
+    };
+    setItem(newItem);
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
