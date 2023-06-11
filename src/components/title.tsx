@@ -17,6 +17,7 @@ const Title = () => {
         const response = await defaultInstance.get(`/auth/callback?code=${code}`);
         const accessToken = response.data.accessToken;
         console.log(response);
+        console.log(accessToken);
 
         // 받아온 액세스 토큰을 사용하여 추가 작업 수행
         // 예: 사용자 정보 요청, 로그인 처리 등

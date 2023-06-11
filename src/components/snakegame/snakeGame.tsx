@@ -120,7 +120,7 @@ const Game = () => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (gameOver || ready) return;
-    const newDirection = KeyPressHandle({ event, direction, gameOver });
+    const newDirection = KeyPressHandle({ event, direction });
 
     if (newDirection === 'modal') {
       setDirection(newDirection);
@@ -175,7 +175,7 @@ const Game = () => {
       </Canvas>
       {gameOver && <GameoverModal restart={restartGame} />}
       {showModal && <PauseModal restart={restartGame} />}
-      {ready && <ReadyModal ready={ready} />}
+      {ready && <ReadyModal />}
     </Wrapper>
   );
 };

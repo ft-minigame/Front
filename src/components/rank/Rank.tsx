@@ -1,8 +1,7 @@
 import styled from 'styled-components';
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Background from '../background';
 import RankImg from '../../assets/images/Rank/rank.png';
-import axios from 'axios';
 import { RankingType } from '../../types/RankingType';
 import { getPost } from '../apis/api/post';
 

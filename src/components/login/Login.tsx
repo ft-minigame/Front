@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Frame from '../../assets/images/Frame.png';
-import { defaultInstance } from '../apis/utils';
 
 const Login = () => {
   const handleLogin = async () => {
