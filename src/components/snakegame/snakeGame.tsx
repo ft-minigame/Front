@@ -21,6 +21,7 @@ const CHARACTER_SIZE = 40;
 
 const Game = () => {
   const inputRef = useRef<HTMLInputElement>(null);
+  const moveSnakeRef = useRef(() => {});
   const [snake, setSnake] = useState<SnakeGameType[]>([{ x: 3, y: 3, image: right }]);
   const [direction, setDirection] = useState('right');
   const [tempDirec, setTempDirec] = useState('right');
@@ -33,81 +34,20 @@ const Game = () => {
   const [showOverlay, setShowOverlay] = useState(false);
 
   useEffect(() => {
-    const moveSnake = () => {
-      const head = { ...snake[0] };
-      switch (direction) {
-        case 'up':
-          head.y -= 1;
-          head.image = back;
-          break;
-        case 'down':
-          head.y += 1;
-          head.image = front;
-          break;
-        case 'left':
-          head.x -= 1;
-          head.image = left;
-          break;
-        case 'right':
-          head.x += 1;
-          head.image = right;
-          break;
-        default:
-          break;
-      }
-
-      if (
-        head.x < 0 ||
-        head.x * CHARACTER_SIZE >= GAME_WIDTH ||
-        head.y < 0 ||
-        head.y * CHARACTER_SIZE >= GAME_HEIGHT
-      ) {
-        setShowOverlay(true);
-        setGameOver(true);
-        return;
-      }
-
-      const newSnake = [head, ...snake.slice(0, -1)];
-      if (
-        newSnake.length > 1 &&
-        newSnake.slice(1).some((block) => block.x === head.x && block.y === head.y)
-      ) {
-        setShowOverlay(true);
-        setGameOver(true);
-        return;
-      }
-      setSnake(newSnake);
-
-      if (item.visible && item.x === head.x && item.y === head.y) {
-        const newItem = {
-          x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
-          y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
-          visible: true,
-        };
-        setItem(newItem);
-        setSnake([...newSnake, snake[snake.length - 1]]);
-        setScore(score + 1);
-      }
-
-      if (!item.visible) {
-        showItem();
-      }
-    };
-
     const intervalId = setInterval(() => {
       if (ready) {
         setTimeout(() => {
           setReady(false);
         }, 2000);
       } else if (!pause) {
-        moveSnake();
+        moveSnakeRef.current();
       }
 
       inputRef.current?.focus();
     }, 100);
 
     return () => clearInterval(intervalId);
-  }, [snake, pause, ready, inputRef]);
+  }, [pause, ready]);
 
   const showItem = () => {
     const newItem = {
@@ -116,6 +56,67 @@ const Game = () => {
       visible: true,
     };
     setItem(newItem);
+  };
+
+  moveSnakeRef.current = () => {
+    const head = { ...snake[0] };
+    switch (direction) {
+      case 'up':
+        head.y -= 1;
+        head.image = back;
+        break;
+      case 'down':
+        head.y += 1;
+        head.image = front;
+        break;
+      case 'left':
+        head.x -= 1;
+        head.image = left;
+        break;
+      case 'right':
+        head.x += 1;
+        head.image = right;
+        break;
+      default:
+        break;
+    }
+
+    if (
+      head.x < 0 ||
+      head.x * CHARACTER_SIZE >= GAME_WIDTH ||
+      head.y < 0 ||
+      head.y * CHARACTER_SIZE >= GAME_HEIGHT
+    ) {
+      setShowOverlay(true);
+      setGameOver(true);
+      return;
+    }
+
+    const newSnake = [head, ...snake.slice(0, -1)];
+    if (
+      newSnake.length > 1 &&
+      newSnake.slice(1).some((block) => block.x === head.x && block.y === head.y)
+    ) {
+      setShowOverlay(true);
+      setGameOver(true);
+      return;
+    }
+    setSnake(newSnake);
+
+    if (item.visible && item.x === head.x && item.y === head.y) {
+      const newItem = {
+        x: Math.floor(Math.random() * (GAME_WIDTH / CHARACTER_SIZE)),
+        y: Math.floor(Math.random() * (GAME_HEIGHT / CHARACTER_SIZE)),
+        visible: true,
+      };
+      setItem(newItem);
+      setSnake([...newSnake, snake[snake.length - 1]]);
+      setScore(score + 1);
+    }
+
+    if (!item.visible) {
+      showItem();
+    }
   };
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
