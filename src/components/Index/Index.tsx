@@ -38,7 +38,7 @@ const Menus = [
     id: 3,
     src: Rank,
     defaultThumbnail: RankThumbnail,
-    url: '/gameselect',
+    url: '/rankall',
   },
   {
     id: 4,

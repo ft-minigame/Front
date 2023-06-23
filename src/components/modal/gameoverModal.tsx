@@ -1,11 +1,11 @@
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import pauseImg from '../../assets/images/Modal/pause/pause.png';
+import gameoverImg from '../../assets/images/Modal/gameover/gameover.png';
 import restartImg from '../../assets/images/Modal/pause/restart.png';
 import menuImg from '../../assets/images/Modal/pause/menu.png';
 import { PauseModalType } from '../../types/PauseModalType';
 
-function PauseModal({ restart }: PauseModalType) {
+function GameoverModal({ restart }: PauseModalType) {
   const navigate = useNavigate();
 
   const handleMenuClick = () => {
@@ -14,7 +14,7 @@ function PauseModal({ restart }: PauseModalType) {
 
   return (
     <Wrapper>
-      <PauseImgTag src={pauseImg} />
+      <PauseImgTag src={gameoverImg} />
       <ButtonWrapper>
         <Button onClick={restart}>
           <ButtonImg src={restartImg} />
@@ -27,7 +27,7 @@ function PauseModal({ restart }: PauseModalType) {
   );
 }
 
-export default PauseModal;
+export default GameoverModal;
 
 const Wrapper = styled.div`
   position: fixed;

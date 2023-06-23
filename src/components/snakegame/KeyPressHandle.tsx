@@ -1,6 +1,6 @@
 import { KeyPressHandleProps } from '../../types/KeyPressHandle';
 
-const KeyPressHandle = ({ event, direction, gameOver }: KeyPressHandleProps) => {
+const KeyPressHandle = ({ event, direction }: KeyPressHandleProps) => {
   switch (event.key) {
     case 'ArrowUp':
       return direction !== 'down' ? 'up' : null;

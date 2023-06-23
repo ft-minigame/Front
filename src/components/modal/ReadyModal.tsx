@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import readyImg from '../../assets/images/Modal/ready/ready.png';
 import startImg from '../../assets/images/Modal/ready/start.png';
-import { ReadyModalType } from '../../types/ReadyModalType';
 
-const ReadyModal = ({ ready }: ReadyModalType) => {
+const ReadyModal = () => {
   const [showStart, setShowStart] = useState(false);
 
   useEffect(() => {
