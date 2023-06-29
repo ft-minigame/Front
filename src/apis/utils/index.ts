@@ -1,7 +1,7 @@
 import axios, { CreateAxiosDefaults } from 'axios';
 
-// const BASE_URL = 'https://port-0-mini-backend-develop-1aac2alg6v5osh.sel3.cloudtype.app/';
-const BASE_URL = 'http://10.19.237.50:8080/';
+const BASE_URL = 'https://port-0-mini-backend-develop-1aac2alg6v5osh.sel3.cloudtype.app/';
+// const BASE_URL = 'http://10.19.237.50:8080/';
 
 // 단순 get요청으로 인증값이 필요없는 경우
 const axiosApi = (url: string, options: CreateAxiosDefaults<any> | undefined) => {

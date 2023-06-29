@@ -1,7 +1,7 @@
 import { defaultInstance, authInstance } from '../utils';
 
-// const BASE_URL = 'https://port-0-mini-backend-develop-1aac2alg6v5osh.sel3.cloudtype.app/';
-const BASE_URL = 'http://10.19.237.50:8080/';
+const BASE_URL = 'https://port-0-mini-backend-develop-1aac2alg6v5osh.sel3.cloudtype.app/';
+// const BASE_URL = 'http://10.19.237.50:8080/';
 
 // 인증이 필요없는 데이터 요청
 export const getPost = async (channelId: any) => {

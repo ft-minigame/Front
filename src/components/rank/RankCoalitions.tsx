@@ -1,7 +1,10 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Background from '../background';
 import RankImg from '../../assets/images/Rank/rank.png';
+import RankAllImg from '../../assets/images/Rank/rankall.png';
+import RankMeImg from '../../assets/images/Rank/rankme.png';
 import { getPost } from '../../apis/api/post';
 
 export interface CoalRankingType {
@@ -14,6 +17,7 @@ export interface CoalRankingType {
 const RankCoalitions = () => {
   const [ranking, setRanking] = useState<CoalRankingType>({} as CoalRankingType);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -37,10 +41,27 @@ const RankCoalitions = () => {
     fetchRanking();
   }, []);
 
+  const handleRankAllClick = () => {
+    navigate('/rankall');
+  };
+
+  const handleRankMeClick = () => {
+    navigate('/rankme');
+  };
+
   return (
     <Wrapper>
       <Background />
       <RankImage />
+
+      <LeftButton onClick={handleRankMeClick}>
+        <ButtonImg src={RankMeImg} />
+      </LeftButton>
+
+      <RightButton onClick={handleRankAllClick}>
+        <ButtonImg src={RankAllImg} />
+      </RightButton>
+
       <RankingList>
         {!error && (
           <>
@@ -85,4 +106,27 @@ const RankingList = styled.div`
 const RankingItem = styled.div`
   margin: 10px;
   font-size: 30px;
+`;
+
+const LeftButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 350px;
+  margin-right: 350px;
+`;
+
+const RightButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 350px;
+  margin-left: 350px;
+`;
+
+const ButtonImg = styled.img`
+  width: 90px;
+  height: 36px;
 `;

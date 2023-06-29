@@ -1,13 +1,17 @@
 import styled from 'styled-components';
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Background from '../background';
 import RankImg from '../../assets/images/Rank/rank.png';
+import RankAllImg from '../../assets/images/Rank/rankall.png';
+import RankCoalImg from '../../assets/images/Rank/rankcoal.png';
 import { RankingType } from '../../types/RankingType';
 import { getPost } from '../../apis/api/post';
 
 const RankMe = () => {
   const [ranking, setRanking] = useState<RankingType[]>([]);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchRanking = async () => {
@@ -31,10 +35,27 @@ const RankMe = () => {
     fetchRanking();
   }, []);
 
+  const handleRankAllClick = () => {
+    navigate('/rankall');
+  };
+
+  const handleRankCoalClick = () => {
+    navigate('/rankcoal');
+  };
+
   return (
     <Wrapper>
       <Background />
       <RankImage />
+
+      <LeftButton onClick={handleRankCoalClick}>
+        <ButtonImg src={RankCoalImg} />
+      </LeftButton>
+
+      <RightButton onClick={handleRankAllClick}>
+        <ButtonImg src={RankAllImg} />
+      </RightButton>
+
       <RankingList>
         {!error &&
           ranking.map((singleRank, index) => (
@@ -77,4 +98,27 @@ const RankingList = styled.div`
 const RankingItem = styled.div`
   margin: 10px;
   font-size: 30px;
+`;
+
+const LeftButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 350px;
+  margin-right: 350px;
+`;
+
+const RightButton = styled.button`
+  cursor: pointer;
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  margin-bottom: 350px;
+  margin-left: 350px;
+`;
+
+const ButtonImg = styled.img`
+  width: 90px;
+  height: 36px;
 `;
